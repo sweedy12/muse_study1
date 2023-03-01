@@ -1,0 +1,44 @@
+the example is "dry your hair"
+
+I invented a new condition:
+
+purpose only:
+1. problem definition: drying clothes.
+
+2. problem definition: drying nail polish.
+
+3. problem definition: washing hair without water.
+ 
+
+purpose with mechanism:
+
+1.Problem definition: drying clothes.
+2 ideas related to this problem:
+- home appliances
+- rotating tumbler
+
+2.Problem definition: drying nail polish.
+1 idea related to this problem:
+- spray
+
+3.Problem definition: washing hair without water.
+3 idea related to this problem:
+- baby powder
+- oil absorption
+- hair products
+
+
+1.Problem definition: drying clothes.
+2 statements related to this problem:
+- Home appliances like clothes dryers are essential for efficiently drying clothes and saving time on laundry.
+-A rotating tumbler inside a clothes dryer is responsible for agitating and drying clothes during a cycle.
+
+2. Problem definition: drying nail polish.
+1 statement related to this problem:
+-To speed up the process of drying nail polish, one can apply a quick-dry spray that helps the polish set faster.
+
+2. Problem definition: washing hair without water.
+1 statement related to this problem:
+-When washing hair without water, using baby powder as a dry shampoo alternative can help absorb excess oil and leave hair looking and feeling fresh.
+-One benefit of washing hair without water using dry shampoo is the oil absorption that can leave hair looking clean and refreshed between washes.
+-Dry shampoos are popular hair products for washing hair without water that can help absorb excess oil, add volume, and freshen hair between washes.
