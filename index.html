@@ -6,14 +6,14 @@
 document.body.scrollTop = 0;
 document.documentElement.scrollTop = 0;
 
-var condition_num_to_type = {'cond_1': 'purp_only.html', 'cond_2': 'purp_mech.html', 'cond_3': 'purp_abs.html'}
+var condition_num_to_type = {'cond_1': 'purp_only.html', 'cond_2': 'purp_mech.html', 'cond_3': 'purp_mech_gpt.html'}
 var new_to_old_cond_mapping = {'graph_1': 'cond_1', 'graph_2': 'cond_2', 'graph_3': 'cond_3', 'graph_4': 'cond_4'}
 
 var stepsNames= ['pre','instructions','random'];
 var problems_mapping = {'problem_1': 'Dry wet floor', 'problem_2': 'Remind taking medicine',
 	'problem_3': 'Folding laundry', 'problem_4': 'Protect plants'}
 
-var possible_problems = ['problem_3', 'problem_4'] // TODO here we need to add the problem that we want in the first part of the experiment
+var possible_problems = ['problem_4'] // TODO here we need to add the problem that we want in the first part of the experiment
 var possible_versions = ['v_1','v_2','v_3','v_4']
 
 var versions_mapping = {'v_1': ['graph_1'],
@@ -35,7 +35,7 @@ const numOfSecondsSelfPart = 5; // 120
 const numOfSecondsInspirationPart = 15; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 5; // 120
-var totalSecondsWithInspiration = 15; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsWithInspiration = 10; //480 todo - change this to see effect on times, table snapshot
 
 // var curr_graph_url_problem;
 
@@ -126,11 +126,34 @@ window.onload = function() {document.getElementById('submitButton'); }
 			for (let i=0; i < 10; i++){ //going over all 10 table rows
 				let str_idx = (i+1).toString()
 				str += "entry number " + str_idx;
+				if (chosen_condition == "cond_4")
+				{
+					str += ": solution" + str_idx + ": " + document.getElementById('self_solution_1_'+str_idx).value
+				str += ": explanation" + str_idx + ": " + document.getElementById('self_explain_1_'+str_idx).value
+				str += "\n"
+				}
+				else{
 				str += ": solution" + str_idx + ": " + document.getElementById('inspiration_solution_1_'+str_idx).value
 				str += ": explanation" + str_idx + ": " + document.getElementById('inspiration_explain_1_'+str_idx).value
 				str += ": source" + str_idx + ": " + document.getElementById('inspiration_source_1_'+str_idx).value
 				str += "\n"
+				}
 			
+			}
+			//add the "more" section
+			
+			if (chosen_condition == "cond_4"){
+			str += "more entry: "
+			str += ": solution" + str_idx + ": " + document.getElementById('more_self_solution_1').value
+				str += ": explanation" + str_idx + ": " + document.getElementById('more_self_explain_1').value
+
+				str += "\n"
+			}
+			else {
+			str += ": solution" + str_idx + ": " + document.getElementById('more_inspiration_solutions_1').value
+				str += ": explanation" + str_idx + ": " + document.getElementById('more_inspiration_explain_1').value
+				str += ": source" + str_idx + ": " + document.getElementById('more_inspiration_source_1').value
+				str += "\n"
 			}
 			
 			writeToTableLogger("table state after " + time_in_seconds + " seconds: " + str)
@@ -147,7 +170,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 	function clickOnFirstInstructionButton(){
 			logCurrentTime("first instructions section")
 			if (document.getElementById("prolific_id").value === ""){
-				alert("In order to continue nir, you should insert a Prolific user id number.")
+				alert("In order to continue, you should insert a Prolific user id number.")
 				return
 			}
 			document.body.scrollTop = 0;
@@ -159,6 +182,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 	}
 	//second page - moving to instructions page 2
 	function clickOnInitialNextButton(){
+	chosen_condition = "cond_2";
 			logCurrentTime("second instructions section")
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0;
@@ -166,18 +190,20 @@ window.onload = function() {document.getElementById('submitButton'); }
 		    document.getElementById("pre").style.display ="none";
 			showSection("instructions");
 			if (chosen_condition === 'cond_1') {
-				showSection("instructions_cond1");
-				alert("condition1");}
+				showSection("instructions_cond1");}
 			if (chosen_condition === 'cond_2'){
-				showSection("instructions_cond2");
-				alert("condition2");}
+				showSection("instructions_cond2");}
 			if (chosen_condition === 'cond_3'){
 				showSection("instructions_cond3");
-				alert("condition3");}
+				document.getElementById("instructions_cond123").style.display ="none"}
 			if (chosen_condition === 'cond_4'){
+			document.getElementById("instructions_cond_123").style.display ="none"
+			document.getElementById("instructions_next_cond_123").style.display ="none"
+			document.getElementById("instructions_next_cond_4").style.display ="block"
 			document.getElementById("example_solutions_inspirations_cond123").style.display ="none"
+			
 				showSection("example_solutions_inspirations_cond4");
-				alert("condition4");}
+				}
 			step += 1
 	}
 	
@@ -190,16 +216,16 @@ window.onload = function() {document.getElementById('submitButton'); }
 			document.getElementById("instructions").style.display ="none";
 			if (chosen_condition === 'cond_1') {
 				document.getElementById("instructions_cond1").style.display ="none";
-				alert("condition1");}
+				}
 			if (chosen_condition === 'cond_2'){
 				document.getElementById("instructions_cond2").style.display ="none";
-				alert("condition2");}
+				}
 			if (chosen_condition === 'cond_3'){
 				document.getElementById("instructions_cond3").style.display ="none";
-				alert("condition3");}
+				}
 			if (chosen_condition === 'cond_4'){
 				document.getElementById("instructions_cond4").style.display ="none";
-				alert("condition4");}
+				}
 			showSection("instructions2");
 			
 			step += 1
@@ -214,7 +240,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 		    document.getElementById("instructions2").style.display ="none";
 
 			document.getElementById("banner").innerHTML = "Find solutions using an inspiration source"
-			if (chosen_condition === 'cond_1'){
+			if (chosen_condition === 'cond_4'){
 				document.getElementById("banner").innerHTML = "Find solutions yourself"
 			}
 			showSection("main");
@@ -258,7 +284,7 @@ function submitTask(){
 	// show submit elements
 	document.getElementById("banner").innerHTML = "Demographic survey"
 	document.getElementById("submit").style.display ="block";
-	alert(document.getElementById("table_logger").value);
+	//alert(document.getElementById("table_logger").value);
 
 }
 
@@ -276,7 +302,7 @@ function myTimerInspirationAnswer() {
 	else if (totalSecondsWithInspiration<300){
 		// document.getElementById("buttonNextAfterMinTimeInsp").style.display ="block";
 	}
-	if (totalSecondsWithInspiration % 500 == 0){
+	if (totalSecondsWithInspiration % 30 == 0){
 	logCurrentTableTime(totalSecondsWithInspiration);
 	}
 }
@@ -294,8 +320,8 @@ function myTimerInspirationAnswer() {
 	<div class="col-xs-12 col-md-12">
 		<textarea cols="40" id="prolific_exp_num" name="entry.1687743065" rows="5" style="display:none">00000</textarea>
 	</div>
-
 <div id="registration_section" style="margin:30px 50px 20px 50px; font-family: Tahoma,serif; font-size: 18px"><br />
+
 <br />
 <br />
 <br />
@@ -309,6 +335,10 @@ function myTimerInspirationAnswer() {
 	In order to start the task, please enter you Prolific user id:&nbsp;&nbsp;<textarea cols="40" id="prolific_id" name="entry.1592742615" rows="1.5"></textarea>
 	<br/>
 	<br/>
+	By clicking on the "Continue to the experiment button" you are agreeing to the terms in 
+	<a href = "ConsentPlayful.pdf" target="_blank"> the consent form </a><br/> <br>
+	
+	
 
 <input name="buttonRegistration" onclick="clickOnFirstInstructionButton()" type="button" style="font-family: Tahoma,serif; font-size: 18px" value="Continue to the experiment instructions!" /></div>
 
@@ -368,7 +398,6 @@ function myTimerInspirationAnswer() {
 		During this task, you will be asked to fill in a table with
 		(1) your <font color="#006400"><b>original solutions</b></font>,
 		(2) an <b>explanation of what you were inspired by</b>. <br/>
-		<b>Please leave the third column (inspiration id) empty </b>.
 		<br/>
 		<br/>
 		For example, the answers from the example above would look this:
@@ -386,12 +415,6 @@ function myTimerInspirationAnswer() {
 		What inspired you 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_1" name="example_insp_1" rows="3">A clothes dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
 		What inspired you 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
 		What inspired you 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think why no using the same mechanism to heat the head. This may result with the hair getting dry faster.</textarea><br />
-		<br />
-		</td>
-		<td colspan="1" width="40%">
-		Inspiration source id 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_1" name="example_insnp_num_1" rows="3">1</textarea><br />
-		Inspiration source id 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">2, 6</textarea><br />
-		Inspiration source id 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_3" name="example_insnp_num_3" rows="3">ME</textarea><br />
 		<br />
 		</td>
 		</tr>
@@ -419,10 +442,12 @@ function myTimerInspirationAnswer() {
 		Then, we will ask you to think of solutions to that problem.
 	    <br />
 		<br />
+		<div id ="instructions_cond_123" style="display:block">
 		To help you, we provide you with  <font color="#00008b"><b> an inspiration source</b></font>.
 		<br/>
 		The inspirations <emph>might</emph> help you think of new solutions
 		(but don’t worry if they don’t, you don’t have to use them).
+		</div>
 		<br/> <br/>
 		<div id= "instructions_cond1" style="display:none">
 		<b>here is an exmaple for the inspiration source: </b> <br/>
@@ -511,15 +536,25 @@ function myTimerInspirationAnswer() {
 		You will have <b>10 minutes</b> to find solutions.
 	<br />
 	<br />
+	<div id ="instructions_next_cond_123" style="display:block">
 	<u>The output of this task:</u>
 		During this task, you will be asked to fill in a table with
 		(1) your <font color="#006400"><b>original solutions</b></font>,
 		(2) an <b>explanation of what you were inspired by</b>, and
 		(3) the <font color="#00008b"><b>inspiration source id.</b></font>
 		(Inspirations have id numbers assigned to them).
-		In case you didn't use an inspiration source for your solution, you do not need to fill in an id.
+		In case you didn't use an inspiration source for your solution, write <b> ME </b> or leave the  inspiration source id column blank.
 		<br/>
 		<br/>
+		</div>
+		<div id ="instructions_next_cond_4" style="display:none">
+	<u>The output of this task:</u>
+		During this task, you will be asked to fill in a table with
+		(1) your <font color="#006400"><b>original solutions</b></font>,
+		(2) an <b>explanation of what you were inspired by</b>.
+		<br/>
+		<br/>
+		</div>
 		For example, the answers from the example above would look this:
 
 	<div id="example_solutions_inspirations_cond4" style="display:none">
@@ -538,12 +573,7 @@ function myTimerInspirationAnswer() {
 		What inspired you 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think why no using the same mechanism to heat the head. This may result with the hair getting dry faster.</textarea><br />
 		<br />
 		</td>
-		<td colspan="1" width="40%">
-		Inspiration source id 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_1" name="example_insnp_num_1" rows="3"></textarea><br />
-		Inspiration source id 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_2" name="example_insnp_num_2" rows="3"></textarea><br />
-		Inspiration source id 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_3" name="example_insnp_num_3" rows="3"></textarea><br />
-		<br />
-		</td>
+
 		</tr>
 		</tbody>
 		</table>
@@ -566,7 +596,7 @@ function myTimerInspirationAnswer() {
 		</td>
 		<td colspan="1" width="40%">
 		Inspiration source id 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_1" name="example_insnp_num_1" rows="3">1</textarea><br />
-		Inspiration source id 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">2, 6</textarea><br />
+		Inspiration source id 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">2</textarea><br />
 		Inspiration source id 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_3" name="example_insnp_num_3" rows="3">ME</textarea><br />
 		<br />
 		</td>
@@ -646,7 +676,7 @@ function myTimerInspirationAnswer() {
 							<br />
 							<p align="justify"><b>Instructions:</b> We provide you an
 								<font color="#00008b"><b>inspiration source</b></font> to potentially help you. <br />
-							In the box below, you will see a list of about 30 inspirational texts.
+							In the box below, you will see a list of 20 inspirational texts. <br/> These text contain <b> problems and ideas that might be similar to the problem you're trying to solve </b>.
 							<br />
 							<br />
 								<u>What you should do:</u> You may use those text sources to come up with solutions.
@@ -698,11 +728,11 @@ function myTimerInspirationAnswer() {
 							<br />
 							<p align="justify"><b>Instructions:</b> We provide you an
 								<font color="#00008b"><b>inspiration source</b></font> to potentially help you. <br />
-							In the box below, you will see a list of about 30 inspirational texts.
+							In the box below, you will see a list of 20 inspirational texts. <br/> These text contain <b> problems and statements that might be similar to the problem you're trying to solve </b>.
 							<br />
 							<br />
-								<u>What you should do:</u> You may use those text sources to come up with solutions.
-								Use the numbers on the left as inspiration source id.
+								You may use those text sources to come up with solutions.
+								Use the bolded numbers on the left as inspiration source id.
                             <br />
 							<br />
 							    Please write shortly the solutions you came up with and the cluster numbers that inspired you
@@ -749,17 +779,12 @@ function myTimerInspirationAnswer() {
 							<br />
 							<p align="justify"><b>Instructions:</b> We provide you an
 								<font color="#00008b"><b>inspiration source</b></font> to potentially help you. <br />
-							In the box below, you will see a list of about 30 inspirational texts.
+							In the box below, you will see a list of  20 inspirational texts.<br/> These text contain <b> problems and statements that might be similar to the problem you're trying to solve </b>.
 							<br />
 							<br />
-								<u>What you should do:</u> You may use those text sources to come up with solutions.
-								Use the numbers on the left as inspiration source id.
+								You may use those text sources to come up with solutions.
+								Use the bolded numbers on the left as inspiration source id.
                             <br />
-							<br />
-							    Please write shortly the solutions you came up with and the cluster numbers that inspired you
-								(you do not have to fill all rows). In case you didn't use any inspiration source for
-								a solution, you don't have to fill in an id.
-							<br />
 							<br />
 								<br />
 							<b>Reminder: this is how you fill the table:</b>
@@ -797,10 +822,7 @@ function myTimerInspirationAnswer() {
 					<tr>
 						<td colspan="2">
 						<p><font face="Times New Roman"><input id="stimulus4" name="stimulus4" type="hidden" value="" /></font></p>
-							<p align="justify"><b>Instructions:</b> We do not provide any <font color="#00008b"><b>inspiration source</b></font>.
-							<br />
-							<br />
-								<u>What you should do:</u> think about the problem, and try to come up with as many creative solutions as you can.
+							<p align="justify"><b>Instructions:think about the problem, and try to come up with as many creative solutions as you can.
 							<br />
 							<br />
 							<font color="#dc143c"><b>Do not</b></font> use any search engine or knowledge source.
@@ -995,31 +1017,15 @@ function myTimerInspirationAnswer() {
 			<textarea cols="40" id="textcomments" name="entry.1532607015" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
 
 			 <br />
-			Before submitting the task, we would appreciate it if you could answer some demographic questions.
+			Before submitting the task, we would appreciate it if you could answer these questions:.
 			<br />
 			We note that this is <font color="red">not mandatory</font>, you could skip it and submit the task.
 
 			<br />
 			<br />
 
-			<div class="panel-body" id="age"><b>How old are you?<br />
-			<textarea cols="40" id="textage" name="entry.1686693761" rows="2"> </textarea> <input id="hidden_html_age" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2_age" name="saved_html_purpose" type="hidden" value="" /></b></div>
-			</br>
 
-			<div class="panel-body" id="gender"><b>What is your gender (male/female/other)?<br />
-			<textarea cols="40" id="textgender" name="entry.1030853651" rows="2"> </textarea> <input id="hidden_html_gender" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2_gender" name="saved_html_purpose" type="hidden" value="" /></b></div>
-			</br>
-
-			<div class="panel-body" id="location"><b>What is your profession?<br />
-			<textarea cols="40" id="textlocation" name="entry.1983260791" rows="2"> </textarea> <input id="hidden_html_location" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2_location" name="saved_html_purpose" type="hidden" value="" /></b></div>
-			</br>
-
-			<div class="panel-body" id="degree"><b>What is the highest degree or level of education you have completed?
-				<br/>(if you are a student, please specify that)<br />
-			<textarea cols="40" id="textdegree" name="entry.1194548727" rows="2"> </textarea> <input id="hidden_html_degree" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2_degree" name="saved_html_purpose" type="hidden" value="" /></b></div>
-			</br>
-
-			<div class="panel-body" id="lang"><b>What creative activities do you engage with?<br />
+			<div class="panel-body" id="lang"><b>What creative activities do you engage with? For example writing, drawing, coding etc... <br />
 			<textarea cols="40" id="textlang" name="entry.1182015162" rows="2"> </textarea> <input id="hidden_html_lang" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2_lang" name="saved_html_purpose" type="hidden" value="" /></b></div>
 			<br />
 			<button id="submitButton" name="buttonSubmit" style="font-family: Tahoma,serif; font-size: 18px" type="submit" value="submit task">submit task</button>
