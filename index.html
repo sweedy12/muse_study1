@@ -35,7 +35,7 @@ const numOfSecondsSelfPart = 5; // 120
 const numOfSecondsInspirationPart = 15; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 5; // 120
-var totalSecondsWithInspiration = 10; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsWithInspiration = 30; //480 todo - change this to see effect on times, table snapshot
 
 // var curr_graph_url_problem;
 
@@ -182,7 +182,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 	}
 	//second page - moving to instructions page 2
 	function clickOnInitialNextButton(){
-	chosen_condition = "cond_2";
+	chosen_condition = "cond_3"; //change condition here
 			logCurrentTime("second instructions section")
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0;
@@ -282,7 +282,7 @@ function submitTask(){
 	// document.getElementById("partNumber").style.display ="none";
 
 	// show submit elements
-	document.getElementById("banner").innerHTML = "Demographic survey"
+	document.getElementById("banner").innerHTML = "Short survey"
 	document.getElementById("submit").style.display ="block";
 	//alert(document.getElementById("table_logger").value);
 
@@ -315,7 +315,7 @@ function myTimerInspirationAnswer() {
 		<textarea cols="40" id="logger" name="entry.247256415" rows="5" style="display:none">task logs:</textarea>
 	</div>
 	<div class="col-xs-12 col-md-12">
-		<textarea cols="40" id="table_logger" name="entry.611445142" rows="5" style="display:none">task table logs:</textarea>
+		<textarea cols="40" id="table_logger" name="entry.953486756" rows="5" style="display:none">task table logs:</textarea>
 	</div>
 	<div class="col-xs-12 col-md-12">
 		<textarea cols="40" id="prolific_exp_num" name="entry.1687743065" rows="5" style="display:none">00000</textarea>
@@ -674,9 +674,8 @@ function myTimerInspirationAnswer() {
 						<td colspan="2">
 							<p><font face="Times New Roman"><input id="stimulus1" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
-							<p align="justify"><b>Instructions:</b> We provide you an
-								<font color="#00008b"><b>inspiration source</b></font> to potentially help you. <br />
-							In the box below, you will see a list of 20 inspirational texts. <br/> These text contain <b> problems and ideas that might be similar to the problem you're trying to solve </b>.
+							<p align="justify"><b>Instructions:</b>
+							In the box below, you will see a list of 20 inspirational texts. <br/> These texts contain <b> problems and ideas that might be similar to the problem you're trying to solve </b>.
 							<br />
 							<br />
 								<u>What you should do:</u> You may use those text sources to come up with solutions.
@@ -705,7 +704,7 @@ function myTimerInspirationAnswer() {
 								<br />
 								</td>
 								<td colspan="1" width="40%">
-								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_number" name="example_insp_links" rows="3">2, 3</textarea><br />
+								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_number" name="example_insp_links" rows="3">2</textarea><br />
 								<br />
 								</td>
 								</tr>
@@ -726,9 +725,8 @@ function myTimerInspirationAnswer() {
 						<td colspan="2">
 							<p><font face="Times New Roman"><input id="stimulus2" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
-							<p align="justify"><b>Instructions:</b> We provide you an
-								<font color="#00008b"><b>inspiration source</b></font> to potentially help you. <br />
-							In the box below, you will see a list of 20 inspirational texts. <br/> These text contain <b> problems and statements that might be similar to the problem you're trying to solve </b>.
+							<p align="justify"><b>Instructions:</b>
+							In the box below, you will see a list of 20 inspirational texts. <br/> These texts contain <b> problems and statements that might be similar to the problem you're trying to solve </b>.
 							<br />
 							<br />
 								You may use those text sources to come up with solutions.
@@ -777,9 +775,8 @@ function myTimerInspirationAnswer() {
 						<td colspan="2">
 							<p><font face="Times New Roman"><input id="stimulus3" name="stimulus3" type="hidden" value="" /></font></p>
 							<br />
-							<p align="justify"><b>Instructions:</b> We provide you an
-								<font color="#00008b"><b>inspiration source</b></font> to potentially help you. <br />
-							In the box below, you will see a list of  20 inspirational texts.<br/> These text contain <b> problems and statements that might be similar to the problem you're trying to solve </b>.
+							<p align="justify"><b>Instructions:</b>
+							In the box below, you will see a list of  20 inspirational texts.<br/> These texts contain <b> problems that might be similar to the problem you're trying to solve </b>.
 							<br />
 							<br />
 								You may use those text sources to come up with solutions.
@@ -822,7 +819,7 @@ function myTimerInspirationAnswer() {
 					<tr>
 						<td colspan="2">
 						<p><font face="Times New Roman"><input id="stimulus4" name="stimulus4" type="hidden" value="" /></font></p>
-							<p align="justify"><b>Instructions:think about the problem, and try to come up with as many creative solutions as you can.
+							<p align="justify"><b>Instructions: think about the problem, and try to come up with as many creative solutions as you can.
 							<br />
 							<br />
 							<font color="#dc143c"><b>Do not</b></font> use any search engine or knowledge source.
