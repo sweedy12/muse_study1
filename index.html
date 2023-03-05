@@ -137,6 +137,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 				str += ": explanation" + str_idx + ": " + document.getElementById('inspiration_explain_1_'+str_idx).value
 				str += ": source" + str_idx + ": " + document.getElementById('inspiration_source_1_'+str_idx).value
 				str += "\n"
+				
 				}
 			
 			}
@@ -144,19 +145,22 @@ window.onload = function() {document.getElementById('submitButton'); }
 			
 			if (chosen_condition == "cond_4"){
 			str += "more entry: "
-			str += ": solution" + str_idx + ": " + document.getElementById('more_self_solution_1').value
-				str += ": explanation" + str_idx + ": " + document.getElementById('more_self_explain_1').value
+			str += "solution more: " + document.getElementById('more_self_solution_1').value
+				str += "explanation more: " + document.getElementById('more_self_explain_1').value
 
 				str += "\n"
 			}
 			else {
-			str += ": solution" + str_idx + ": " + document.getElementById('more_inspiration_solutions_1').value
-				str += ": explanation" + str_idx + ": " + document.getElementById('more_inspiration_explain_1').value
-				str += ": source" + str_idx + ": " + document.getElementById('more_inspiration_source_1').value
+			str += "solution more: " + document.getElementById('more_inspiration_solutions_1').value
+				str += "explanation more: " + document.getElementById('more_inspiration_explain_1').value
+				str += "inspiration more: " + document.getElementById('more_inspiration_source_1').value
 				str += "\n"
+				
 			}
+			writeToTableLogger("table state after " + time_in_seconds + " seconds: " + str + "---$$$---");
+
 			
-			writeToTableLogger("table state after " + time_in_seconds + " seconds: " + str)
+
 	}
 
 	function writeToLogger(log){
@@ -182,7 +186,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 	}
 	//second page - moving to instructions page 2
 	function clickOnInitialNextButton(){
-	chosen_condition = "cond_3"; //change condition here
+	chosen_condition = "cond_2"; //change condition here
 			logCurrentTime("second instructions section")
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0;
@@ -443,12 +447,11 @@ function myTimerInspirationAnswer() {
 	    <br />
 		<br />
 		<div id ="instructions_cond_123" style="display:block">
-		To help you, we provide you with  <font color="#00008b"><b> an inspiration source</b></font>.
+		To help you, we provide you with  <font color="#00008b"><b> 20 potential inspirations</b></font>.
 		<br/>
 		The inspirations <emph>might</emph> help you think of new solutions
 		(but don’t worry if they don’t, you don’t have to use them).
 		</div>
-		<br/> <br/>
 		<div id= "instructions_cond1" style="display:none">
 		<b>here is an exmaple for the inspiration source: </b> <br/>
 		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
@@ -472,7 +475,10 @@ function myTimerInspirationAnswer() {
 		</div>
 		
 		<div id= "instructions_cond2" style="display:none">
-		<b>here is an exmaple for the inspiration source: </b> <br/>
+		Each inspiration is consisted of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
+		To help you come up with more ideas, we also list some concepts associated with each of the 20 problems. 
+
+		<b>here is an exmaple of 3 inspirations for the problem of "dry your hair": </b> <br/>
 		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
 		<tbody>
 		<tr>
@@ -481,21 +487,32 @@ function myTimerInspirationAnswer() {
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
-	<b>1.</b>Problem definition: drying clothes. <br/>
-2 ideas related to this problem:<br/>
-- home appliances<br/>
-- rotating tumbler<br/>
-<br/><br/>
-<b>2.</b>Problem definition: drying nail polish.<br/>
-1 idea related to this problem:<br/>
-- spray<br/>
-<br/><br/>
-<b>3.</b>Problem definition: washing hair without water.<br/>
-3 idea related to this problem:<br/>
-- baby powder<br/>
-- oil absorption<br/>
-- hair products<br/>
-<br/><br/>
+	<b>1.</b> Consider the problem of: Drying clothes. <br/>
+	<UL type = "square">
+	<LI>
+Concepts related to this problem:<br/>
+<UL>
+<LI>Home appliances<br/>
+<LI>Rotating tumbler<br/>
+</UL></UL>
+<br/>
+<b>2.</b> Problem definition: Drying nail polish.<br/>
+<UL type = "square">
+<LI>
+Concepts related to this problem:<br/>
+<UL>
+<LI>Spray<br/>
+</UL></UL>
+<br/>
+<b>3.</b> Problem definition: washing hair without water.<br/>
+<UL type = "square">
+<LI>Concepts related to this problem:<br/>
+<UL>
+<LI>Bbaby powder<br/>
+<LI>Oil absorption<br/>
+<LI>Hair products<br/>
+</UL></UL>
+<br/>
 		</td>
 		</tr>
 		</tbody>
@@ -621,7 +638,7 @@ function myTimerInspirationAnswer() {
 	<div id="banner_instruction_3" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 3</div>
 	<br/>
 	<br/>
-		Overall, <b>total amount of time required to answer the survey is around <**15**> minutes.</b>
+		Overall, <b>total amount of time required to answer the survey is around <**10**> minutes.</b>
 		Please do not start the task if you do not have the time.
 		<br/>
 		<br/>
@@ -674,21 +691,13 @@ function myTimerInspirationAnswer() {
 						<td colspan="2">
 							<p><font face="Times New Roman"><input id="stimulus1" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
-							<p align="justify"><b>Instructions:</b>
-							In the box below, you will see a list of 20 inspirational texts. <br/> These texts contain <b> problems and ideas that might be similar to the problem you're trying to solve </b>.
+							<p align="justify"><b>Reminder:</b>
+							In the box below, you will see a list of 20 inspirational texts. 
 							<br />
-							<br />
-								<u>What you should do:</u> You may use those text sources to come up with solutions.
 								Use the numbers on the left as inspiration source id.
-                            <br />
-							<br />
-							    Please write shortly the solutions you came up with and the cluster numbers that inspired you
-								(you do not have to fill all rows). In case you didn't use any inspiration source for
-								a solution, you don't have to fill in an id.
-							<br />
 							<br />
 								<br />
-							<b>Reminder: this is how you fill the table:</b>
+							<b> this is how you fill the table:</b>
 							<br />
 
 							<div id="example_insp_solutions_links" style="display:block">
@@ -725,18 +734,10 @@ function myTimerInspirationAnswer() {
 						<td colspan="2">
 							<p><font face="Times New Roman"><input id="stimulus2" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
-							<p align="justify"><b>Instructions:</b>
-							In the box below, you will see a list of 20 inspirational texts. <br/> These texts contain <b> problems and statements that might be similar to the problem you're trying to solve </b>.
-							<br />
-							<br />
+							<p align="justify">
 								You may use those text sources to come up with solutions.
 								Use the bolded numbers on the left as inspiration source id.
                             <br />
-							<br />
-							    Please write shortly the solutions you came up with and the cluster numbers that inspired you
-								(you do not have to fill all rows). In case you didn't use any inspiration source for
-								a solution, you don't have to fill in an id.
-							<br />
 							<br />
 								<br />
 							<b>Reminder: this is how you fill the table:</b>
