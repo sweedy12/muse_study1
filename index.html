@@ -20,6 +20,7 @@ var versions_mapping = {'v_1': ['graph_1'],
 						'v_2': ['graph_2'],
 						'v_3': ['graph_3'],
 						'v_4': ['graph_4']}
+						
 
 var chosen_problem;
 var phaseName;
@@ -35,7 +36,7 @@ const numOfSecondsSelfPart = 5; // 120
 const numOfSecondsInspirationPart = 15; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 5; // 120
-var totalSecondsWithInspiration = 30; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsWithInspiration = 240; //480 todo - change this to see effect on times, table snapshot
 
 // var curr_graph_url_problem;
 
@@ -186,7 +187,12 @@ window.onload = function() {document.getElementById('submitButton'); }
 	}
 	//second page - moving to instructions page 2
 	function clickOnInitialNextButton(){
-	chosen_condition = "cond_2"; //change condition here
+	chosen_condition = "cond_3"; //change condition here
+	//get condition value from document:
+	if (document.getElementById("condition_chooser").value != ""){
+		chosen_condition = "cond_"+document.getElementById("condition_chooser").value;
+	}
+	
 			logCurrentTime("second instructions section")
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0;
@@ -342,7 +348,7 @@ function myTimerInspirationAnswer() {
 	By clicking on the "Continue to the experiment button" you are agreeing to the terms in 
 	<a href = "ConsentPlayful.pdf" target="_blank"> the consent form </a><br/> <br>
 	
-	
+<b> (Pilot : enter condition 1-4 here) </b><textarea cols="20" id="condition_chooser" name="conditioner" rows="1.5"></textarea> <br><br><br>
 
 <input name="buttonRegistration" onclick="clickOnFirstInstructionButton()" type="button" style="font-family: Tahoma,serif; font-size: 18px" value="Continue to the experiment instructions!" /></div>
 
@@ -453,7 +459,8 @@ function myTimerInspirationAnswer() {
 		(but don’t worry if they don’t, you don’t have to use them).
 		</div>
 		<div id= "instructions_cond1" style="display:none">
-		<b>here is an exmaple for the inspiration source: </b> <br/>
+		Each inspiration is consisted of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
+		<b>Here is an example of 3 inspirations for the problem of "dry your hair": </b> <br/>
 		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
 		<tbody>
 		<tr>
@@ -462,11 +469,11 @@ function myTimerInspirationAnswer() {
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
-		<b>1.</b> problem definition: drying clothes.<br/>
+		<b>1.</b> Consider the problem of: Drying clothes.<br/>
 
-<b>2.</b> problem definition: drying nail polish.<br/>
+<b>2.</b> Consider the problem of: Drying nail polish.<br/>
 
-<b>3.</b> problem definition: washing hair without water.<br/>
+<b>3.</b> Consider the problem of: Washing hair without water.<br/>
  <br/><br/>
 		</td>
 		</tr>
@@ -478,7 +485,7 @@ function myTimerInspirationAnswer() {
 		Each inspiration is consisted of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
 		To help you come up with more ideas, we also list some concepts associated with each of the 20 problems. 
 
-		<b>here is an exmaple of 3 inspirations for the problem of "dry your hair": </b> <br/>
+		<b>Here is an example of 3 inspirations for the problem of "dry your hair": </b> <br/>
 		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
 		<tbody>
 		<tr>
@@ -508,7 +515,7 @@ Concepts related to this problem:<br/>
 <UL type = "square">
 <LI>Concepts related to this problem:<br/>
 <UL>
-<LI>Bbaby powder<br/>
+<LI>Baby powder<br/>
 <LI>Oil absorption<br/>
 <LI>Hair products<br/>
 </UL></UL>
@@ -520,7 +527,10 @@ Concepts related to this problem:<br/>
 		</div>
 		
 		<div id= "instructions_cond3" style="display:none">
-		<b>here is an exmaple for the inspiration source: </b> <br/>
+		Each inspiration is consisted of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
+		To help you come up with more ideas, we also list some statements related to each of the 20 problems. 
+
+		<b>Here is an example of 3 inspirations for the problem of "dry your hair": </b> <br/>
 		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
 		<tbody>
 		<tr>
@@ -529,20 +539,38 @@ Concepts related to this problem:<br/>
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
-	<b>1.</b> Problem definition: drying clothes. <br/>
-2 statements related to this problem:<br/>
-- Home appliances like clothes dryers are essential for efficiently drying clothes and saving time on laundry.<br/>
--A rotating tumbler inside a clothes dryer is responsible for agitating and drying clothes during a cycle.<br/>
-<br/><br/>
-<b>2.</b>  Problem definition: drying nail polish.<br/>
-1 statement related to this problem:<br/>
--To speed up the process of drying nail polish, one can apply a quick-dry spray that helps the polish set faster.<br/>
-<br/><br/>
-<b>3.</b>  Problem definition: washing hair without water.<br/>
-1 statement related to this problem:<br/>
--When washing hair without water, using baby powder as a dry shampoo alternative can help absorb excess oil and leave hair looking and feeling fresh.<br/>
--One benefit of washing hair without water using dry shampoo is the oil absorption that can leave hair looking clean and refreshed between washes.<br/>
--Dry shampoos are popular hair products for washing hair without water that can help absorb excess oil, add volume, and freshen hair between washes.<br/>
+<b>1.</b> Consider the following problem: Drying clothes.<br/>
+<UL type="square">
+<LI> 
+Statements related to this problem:<br/>
+ <UL> 
+<LI> Home appliances like clothes dryers are essential for efficiently drying clothes and saving time on laundry.<br/>
+
+<LI> A rotating tumbler inside a clothes dryer is responsible for agitating and drying clothes during a cycle.<br/>
+
+</UL></UL>
+<b>2.</b> Consider the following problem: Drying nail polish.<br/>
+<UL type="square">
+<LI> 
+Statements related to this problem:<br/>
+<UL>
+<LI> To dry nail polish faster, use a quick-dry spray.<br/>
+
+</UL></UL>
+<b>3.</b> Consider the following problem: Washing hair without water.<br/>
+<UL type="square">
+<LI> 
+Statements related to this problem:<br/>
+<UL>
+<LI> To wash hair without water, try using baby powder as a dry shampoo to absorb oil and refresh hair.<br/>
+
+
+<LI> Dry shampoo can absorb oil, leaving hair looking clean and refreshed between washes.<br/>
+
+
+<LI> Dry shampoos are popular for absorbing oil, adding volume, and freshening hair between washes without water.<br/>
+</UL></UL>
+
 <br/><br/>
 		</td>
 		</tr>
@@ -735,7 +763,6 @@ Concepts related to this problem:<br/>
 							<p><font face="Times New Roman"><input id="stimulus2" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
 							<p align="justify">
-								You may use those text sources to come up with solutions.
 								Use the bolded numbers on the left as inspiration source id.
                             <br />
 							<br />
@@ -756,7 +783,7 @@ Concepts related to this problem:<br/>
 								<br />
 								</td>
 								<td colspan="1" width="40%">
-								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_texts_number" name="example_insp_links" rows="3">11, 22</textarea><br />
+								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_texts_number" name="example_insp_links" rows="3">11, 20</textarea><br />
 								<br />
 								</td>
 								</tr>
@@ -776,16 +803,13 @@ Concepts related to this problem:<br/>
 						<td colspan="2">
 							<p><font face="Times New Roman"><input id="stimulus3" name="stimulus3" type="hidden" value="" /></font></p>
 							<br />
-							<p align="justify"><b>Instructions:</b>
-							In the box below, you will see a list of  20 inspirational texts.<br/> These texts contain <b> problems that might be similar to the problem you're trying to solve </b>.
-							<br />
-							<br />
-								You may use those text sources to come up with solutions.
+							<p align="justify"><b>Reminder:</b>
+							In the box below, you will see a list of  20 inspirational texts.<br/> 
 								Use the bolded numbers on the left as inspiration source id.
                             <br />
 							<br />
 								<br />
-							<b>Reminder: this is how you fill the table:</b>
+							<b>this is how you fill the table:</b>
 							<br />
 
 							<div id="example_insp_solutions_engine" style="display:block">
@@ -820,7 +844,6 @@ Concepts related to this problem:<br/>
 					<tr>
 						<td colspan="2">
 						<p><font face="Times New Roman"><input id="stimulus4" name="stimulus4" type="hidden" value="" /></font></p>
-							<p align="justify"><b>Instructions: think about the problem, and try to come up with as many creative solutions as you can.
 							<br />
 							<br />
 							<font color="#dc143c"><b>Do not</b></font> use any search engine or knowledge source.
