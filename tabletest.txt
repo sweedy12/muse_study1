@@ -1,0 +1,20 @@
+<html>
+<table style="border: 1px solid black">
+		<tbody>
+		<tr style="border:2px solid #aaa;">
+		<td colspan="1" width="40%">
+		Solution 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
+		Solution 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
+		Solution 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
+		<br />
+		</td>
+		<td colspan="1" width="40%">
+		What inspired you 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_1" name="example_insp_1" rows="3">A clothes dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
+		What inspired you 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
+		What inspired you 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think why no using the same mechanism to heat the head. This may result with the hair getting dry faster.</textarea><br />
+		<br />
+		</td>
+		</tr>
+		</tbody>
+		</table>
+</html>

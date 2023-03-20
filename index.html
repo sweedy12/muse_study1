@@ -345,7 +345,7 @@ function myTimerInspirationAnswer() {
 	In order to start the task, please enter you Prolific user id:&nbsp;&nbsp;<textarea cols="40" id="prolific_id" name="entry.1592742615" rows="1.5"></textarea>
 	<br/>
 	<br/>
-	By clicking on the "Continue to the experiment button" you are agreeing to the terms in 
+	By clicking on the "Continue to the experiment" button you are agreeing to the terms in 
 	<a href = "ConsentPlayful.pdf" target="_blank"> the consent form </a><br/> <br>
 	
 <b> (Pilot : enter condition 1-4 here) </b><textarea cols="20" id="condition_chooser" name="conditioner" rows="1.5"></textarea> <br><br><br>
@@ -410,21 +410,28 @@ function myTimerInspirationAnswer() {
 		(2) an <b>explanation of what you were inspired by</b>. <br/>
 		<br/>
 		<br/>
-		For example, the answers from the example above would look this:
+		For example, the answers for the example above would look this:
 	<div id="example_solutions_inspirations" style="display:block">
 		<table style="border: 1px solid black">
 		<tbody>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="40%">
-		Solution 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
-		Solution 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
-		Solution 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
+		Solution 1:<br/><textarea style="color: royalblue" width="100%" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br /> </td>
+		<td colspan="1" width="40%">
+		Solution 2:<br/><textarea style="color: royalblue" width="100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
+		</td>
+		<td colspan="1" width="20%">
+		Solution 3:<br/><textarea style="color: royalblue" width="40%" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
 		<br />
 		</td>
 		<td colspan="1" width="40%">
-		What inspired you 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_1" name="example_insp_1" rows="3">A clothes dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
-		What inspired you 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
-		What inspired you 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think why no using the same mechanism to heat the head. This may result with the hair getting dry faster.</textarea><br />
+		What inspired you 1:<br/><textarea style="color: royalblue" width="100%" id="example_insp_1" name="example_insp_1" rows="3">A dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
+		</td>
+		<td colspan="1" width="40%">
+		What inspired you 2:<br/><textarea style="color: royalblue" width="100%" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
+		</td>
+		<td colspan="1" width="20%">
+		What inspired you 3:<br/><textarea style="color: royalblue" width="40%" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think about using the same mechanism to heat the head. This may result with the hair drying faster.</textarea><br />
 		<br />
 		</td>
 		</tr>
@@ -459,9 +466,9 @@ function myTimerInspirationAnswer() {
 		(but don’t worry if they don’t, you don’t have to use them).
 		</div>
 		<div id= "instructions_cond1" style="display:none">
-		Each inspiration is consisted of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
+		Each inspiration consists of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
 		<b>Here is an example of 3 inspirations for the problem of "dry your hair": </b> <br/>
-		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
+		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 45%">
 		<tbody>
 		<tr>
 		<td style="display:none"><b>Inspirational texts source:</b></td>
@@ -469,11 +476,11 @@ function myTimerInspirationAnswer() {
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
-		<b>1.</b> Consider the problem of: Drying clothes.<br/>
+		<b><mark>1.</mark></b> Consider the problem of: <b>Drying clothes.</b><br/>
 
-<b>2.</b> Consider the problem of: Drying nail polish.<br/>
+<b><mark>2.</mark></b> Consider the problem of: <b>Drying nail polish.</b><br/>
 
-<b>3.</b> Consider the problem of: Washing hair without water.<br/>
+<b><mark>3.</mark></b> Consider the problem of: <b>Washing hair without water.</b><br/>
  <br/><br/>
 		</td>
 		</tr>
@@ -482,11 +489,11 @@ function myTimerInspirationAnswer() {
 		</div>
 		
 		<div id= "instructions_cond2" style="display:none">
-		Each inspiration is consisted of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
+		Each inspiration consists of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
 		To help you come up with more ideas, we also list some concepts associated with each of the 20 problems. 
 
 		<b>Here is an example of 3 inspirations for the problem of "dry your hair": </b> <br/>
-		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
+		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 45%">
 		<tbody>
 		<tr>
 		<td style="display:none"><b>Inspirational texts source:</b></td>
@@ -494,7 +501,7 @@ function myTimerInspirationAnswer() {
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
-	<b>1.</b> Consider the problem of: Drying clothes. <br/>
+	<b><mark>1.</mark></b> Consider the problem of: <b>Drying clothes.</b> <br/>
 	<UL type = "square">
 	<LI>
 Concepts related to this problem:<br/>
@@ -503,7 +510,7 @@ Concepts related to this problem:<br/>
 <LI>Rotating tumbler<br/>
 </UL></UL>
 <br/>
-<b>2.</b> Problem definition: Drying nail polish.<br/>
+<b><mark>2.</mark></b> Consider the problem of:  <b>Drying nail polish.</b><br/>
 <UL type = "square">
 <LI>
 Concepts related to this problem:<br/>
@@ -511,7 +518,7 @@ Concepts related to this problem:<br/>
 <LI>Spray<br/>
 </UL></UL>
 <br/>
-<b>3.</b> Problem definition: washing hair without water.<br/>
+<b><mark>3.</mark></b> Consider the problem of: <b>Washing hair without water.</b><br/>
 <UL type = "square">
 <LI>Concepts related to this problem:<br/>
 <UL>
@@ -527,7 +534,7 @@ Concepts related to this problem:<br/>
 		</div>
 		
 		<div id= "instructions_cond3" style="display:none">
-		Each inspiration is consisted of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
+		Each inspiration consists of a problem that might be related to the problem you will be asked to solve. Think of how ways to tackle those problems might inspire you in solving your own problem. 
 		To help you come up with more ideas, we also list some statements related to each of the 20 problems. 
 
 		<b>Here is an example of 3 inspirations for the problem of "dry your hair": </b> <br/>
@@ -539,36 +546,36 @@ Concepts related to this problem:<br/>
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
-<b>1.</b> Consider the following problem: Drying clothes.<br/>
+<b><mark>1.</mark></b> Consider the problem of: <b>Drying clothes.</b><br/>
 <UL type="square">
 <LI> 
 Statements related to this problem:<br/>
  <UL> 
-<LI> Home appliances like clothes dryers are essential for efficiently drying clothes and saving time on laundry.<br/>
+<LI> Home appliances like <b>dryers</b> are essential for efficiently drying clothes and saving time on laundry.<br/>
 
-<LI> A rotating tumbler inside a clothes dryer is responsible for agitating and drying clothes during a cycle.<br/>
+<LI> A <b>rotating tumbler</b> inside a dryer is responsible for agitating and drying clothes during a cycle.<br/>
 
 </UL></UL>
-<b>2.</b> Consider the following problem: Drying nail polish.<br/>
+<b><mark>2.</mark></b> Consider the problem of: <b>Drying nail polish.</b><br/>
 <UL type="square">
 <LI> 
 Statements related to this problem:<br/>
 <UL>
-<LI> To dry nail polish faster, use a quick-dry spray.<br/>
+<LI> To dry nail polish faster, use a quick-dry <b>spray.</b><br/>
 
 </UL></UL>
-<b>3.</b> Consider the following problem: Washing hair without water.<br/>
+<b><mark>3.</mark></b> Consider the problem of: <b>Washing hair without water.</b><br/>
 <UL type="square">
 <LI> 
 Statements related to this problem:<br/>
 <UL>
-<LI> To wash hair without water, try using baby powder as a dry shampoo to absorb oil and refresh hair.<br/>
+<LI> To wash hair without water, try using <b>baby powder</b> as a dry shampoo to absorb oil and refresh hair.
 
 
-<LI> Dry shampoo can absorb oil, leaving hair looking clean and refreshed between washes.<br/>
+<LI> Dry shampoo can <b>absorb oil</b>, leaving hair looking clean and refreshed between washes.
 
 
-<LI> Dry shampoos are popular for absorbing oil, adding volume, and freshening hair between washes without water.<br/>
+<LI> <b>Dry shampoos</b> are popular for absorbing oil, adding volume, and freshening hair between washes without water.
 </UL></UL>
 
 <br/><br/>
@@ -588,7 +595,7 @@ Statements related to this problem:<br/>
 		(2) an <b>explanation of what you were inspired by</b>, and
 		(3) the <font color="#00008b"><b>inspiration source id.</b></font>
 		(Inspirations have id numbers assigned to them).
-		In case you didn't use an inspiration source for your solution, write <b> ME </b> or leave the  inspiration source id column blank.
+		In case you didn't use an inspiration source for your solution, write <b> ME </b> in the inspiration id column .
 		<br/>
 		<br/>
 		</div>
@@ -600,22 +607,35 @@ Statements related to this problem:<br/>
 		<br/>
 		<br/>
 		</div>
-		For example, the answers from the example above would look this:
+		For example, the answers for the example above would look this:
 
 	<div id="example_solutions_inspirations_cond4" style="display:none">
 		<table style="border: 1px solid black">
 		<tbody>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="40%">
-		Solution 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
-		Solution 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
-		Solution 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
+		Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
+		</td>
+		<td colspan="2" width="40%">
+		What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_1" name="example_insp_1" rows="3">A dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
+		</td>
+		</tr>
+		<tr style="border:2px solid #aaa;">
+		<td colspan="1" width="40%">
+		Solution 2:<br/><textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
+		</td>
+		<td colspan="2" width="40%">
+		What inspired you 2:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: 
+		you spray it on your nails and the nail polish gets dry faster.</textarea><br />
+		</td>
+		</tr>
+		<tr style="border:2px solid #aaa;">
+		<td colspan="1" width="20%">
+		Solution 3:<br/><textarea style="color: royalblue;width:100%" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
 		<br />
 		</td>
-		<td colspan="1" width="40%">
-		What inspired you 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_1" name="example_insp_1" rows="3">A clothes dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
-		What inspired you 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
-		What inspired you 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think why no using the same mechanism to heat the head. This may result with the hair getting dry faster.</textarea><br />
+		<td colspan="2" width="40%">
+		What inspired you 3:<br/><textarea style="color: royalblue;width:100%" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think about using the same mechanism to heat the head. This may result with the hair drying faster.</textarea><br />
 		<br />
 		</td>
 
@@ -628,21 +648,38 @@ Statements related to this problem:<br/>
 		<tbody>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="40%">
-		Solution 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
-		Solution 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
-		Solution 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
+		Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
+		</td>
+		<td colspan="2" width="40%">
+		What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_1" name="example_insp_1" rows="3">A dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
+		</td>
+		<td colspan="1" width="20%">
+		Inspiration id 1:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_1" name="example_insnp_num_1" rows="3">1</textarea><br />
+		</td>
+		</tr>
+		<tr style="border:2px solid #aaa;">
+		<td colspan="1" width="40%">
+		Solution 2:<br/><textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
+		</td>
+		<td colspan="2" width="40%">
+		What inspired you 2:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: 
+		you spray it on your nails and the nail polish dries faster.</textarea><br />
+		</td>
+		<td colspan="2" width="20%">
+		Inspiration id 2:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">2</textarea><br />
+		</td>
+		</tr>
+		<tr style="border:2px solid #aaa;">
+		<td colspan="1" width="20%">
+		Solution 3:<br/><textarea style="color: royalblue;width:100%" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
 		<br />
 		</td>
-		<td colspan="1" width="40%">
-		What inspired you 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_1" name="example_insp_1" rows="3">A clothes dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
-		What inspired you 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
-		What inspired you 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think why no using the same mechanism to heat the head. This may result with the hair getting dry faster.</textarea><br />
+		<td colspan="2" width="40%">
+		What inspired you 3:<br/><textarea style="color: royalblue;width:100%" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think about using the same mechanism to heat the head. This may result with the hair drying faster.</textarea><br />
 		<br />
 		</td>
-		<td colspan="1" width="40%">
-		Inspiration source id 1:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_1" name="example_insnp_num_1" rows="3">1</textarea><br />
-		Inspiration source id 2:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">2</textarea><br />
-		Inspiration source id 3:<br/><textarea style="color: royalblue" readonly cols="40" id="example_insnp_num_3" name="example_insnp_num_3" rows="3">ME</textarea><br />
+		<td colspan="2" width="40%">
+		Inspiration id 3:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_3" name="example_insnp_num_3" rows="3">ME</textarea><br />
 		<br />
 		</td>
 		</tr>
@@ -719,13 +756,16 @@ Statements related to this problem:<br/>
 						<td colspan="2">
 							<p><font face="Times New Roman"><input id="stimulus1" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
-							<p align="justify"><b>Reminder:</b>
+							<p align="justify">
 							In the box below, you will see a list of 20 inspirational texts. 
 							<br />
-								Use the numbers on the left as inspiration source id.
+								Use the numbers on the left as the inspiration id.
+								Fill the the table with as many ideas as you come up with. You do not have to fill the entire table.
+								</br>
+								If you come up with more than 10 ideas, write all of them in the "more" entries.
 							<br />
 								<br />
-							<b> this is how you fill the table:</b>
+							<b>Reminder: this is how you fill the table:</b>
 							<br />
 
 							<div id="example_insp_solutions_links" style="display:block">
@@ -763,11 +803,12 @@ Statements related to this problem:<br/>
 							<p><font face="Times New Roman"><input id="stimulus2" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
 							<p align="justify">
-								Use the bolded numbers on the left as inspiration source id.
-                            <br />
+							In the box below, you will see a list of 20 inspirational texts. 
+							<br />
+								Use the numbers on the left as inspiration source id.
 							<br />
 								<br />
-							<b>Reminder: this is how you fill the table:</b>
+							<b> this is how you fill the table:</b>
 							<br />
 
 							<div id="example_insp_solutions_texts" style="display:block">
@@ -803,13 +844,16 @@ Statements related to this problem:<br/>
 						<td colspan="2">
 							<p><font face="Times New Roman"><input id="stimulus3" name="stimulus3" type="hidden" value="" /></font></p>
 							<br />
-							<p align="justify"><b>Reminder:</b>
-							In the box below, you will see a list of  20 inspirational texts.<br/> 
-								Use the bolded numbers on the left as inspiration source id.
-                            <br />
+							<p align="justify">
+							In the box below, you will see a list of 20 inspirational texts. 
+							<br />
+								Use the numbers on the left as the inspiration id.
+								Fill the the table with as many ideas as you come up with. You do not have to fill the entire table.
+								</br>
+								If you come up with more than 10 ideas, write all of them in the "more" entries.
 							<br />
 								<br />
-							<b>this is how you fill the table:</b>
+							<b>Reminder: this is how you fill the table:</b>
 							<br />
 
 							<div id="example_insp_solutions_engine" style="display:block">
@@ -825,7 +869,7 @@ Statements related to this problem:<br/>
 								<br />
 								</td>
 								<td colspan="1" width="40%">
-								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_engine_number" name="example_insp_links" rows="3">55</textarea><br />
+								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_engine_number" name="example_insp_links" rows="3">1</textarea><br />
 								<br />
 								</td>
 								</tr>
@@ -848,6 +892,11 @@ Statements related to this problem:<br/>
 							<br />
 							<font color="#dc143c"><b>Do not</b></font> use any search engine or knowledge source.
 							<br />
+							<br />
+							<br />
+								Fill the the table with as many ideas as you come up with. You do not have to fill the entire table.
+								</br>
+								If you come up with more than 10 ideas, write all of them in the "more" entries.
 							<br />
 							<br />
 							<b>Reminder: this is how you fill the table:</b>
@@ -923,45 +972,45 @@ Statements related to this problem:<br/>
 						<tbody>
 						<tr style="border:2px solid #aaa;">
 						<td colspan="1" width="40%">
-						Solution 1:<br /><textarea cols="40" id="inspiration_solution_1_1" name="entry.314622552" rows="3"></textarea><br />
-						Solution 2:<br /><textarea cols="40" id="inspiration_solution_1_2" name="entry.1009268483" rows="3"></textarea><br />
-						Solution 3:<br /><textarea cols="40" id="inspiration_solution_1_3" name="entry.685221619" rows="3"></textarea><br />
-						Solution 4:<br /><textarea cols="40" id="inspiration_solution_1_4" name="entry.280201648" rows="3"></textarea><br />
-						Solution 5:<br /><textarea cols="40" id="inspiration_solution_1_5" name="entry.1697104374" rows="3"></textarea><br />
-						Solution 6:<br /><textarea cols="40" id="inspiration_solution_1_6" name="entry.2132214692" rows="3"></textarea><br />
-						Solution 7:<br /><textarea cols="40" id="inspiration_solution_1_7" name="entry.1620257989" rows="3"></textarea><br />
-						Solution 8:<br /><textarea cols="40" id="inspiration_solution_1_8" name="entry.329613343" rows="3"></textarea><br />
-						Solution 9:<br /><textarea cols="40" id="inspiration_solution_1_9" name="entry.1299464159" rows="3"></textarea><br />
-						Solution 10:<br /><textarea cols="40" id="inspiration_solution_1_10" name="entry.2087526347" rows="3"></textarea><br />
-						More solutions:<br /><textarea cols="40" id="more_inspiration_solutions_1" name="entry.1076502473" rows="3"></textarea><br />
+						Solution 1:<br /><textarea style="width:100%" id="inspiration_solution_1_1" name="entry.314622552" rows="3"></textarea><br />
+						Solution 2:<br /><textarea style="width:100%" id="inspiration_solution_1_2" name="entry.1009268483" rows="3"></textarea><br />
+						Solution 3:<br /><textarea style="width:100%" id="inspiration_solution_1_3" name="entry.685221619" rows="3"></textarea><br />
+						Solution 4:<br /><textarea style="width:100%" id="inspiration_solution_1_4" name="entry.280201648" rows="3"></textarea><br />
+						Solution 5:<br /><textarea style="width:100%" id="inspiration_solution_1_5" name="entry.1697104374" rows="3"></textarea><br />
+						Solution 6:<br /><textarea style="width:100%"id="inspiration_solution_1_6" name="entry.2132214692" rows="3"></textarea><br />
+						Solution 7:<br /><textarea style="width:100%" id="inspiration_solution_1_7" name="entry.1620257989" rows="3"></textarea><br />
+						Solution 8:<br /><textarea style="width:100%" id="inspiration_solution_1_8" name="entry.329613343" rows="3"></textarea><br />
+						Solution 9:<br /><textarea style="width:100%" id="inspiration_solution_1_9" name="entry.1299464159" rows="3"></textarea><br />
+						Solution 10:<br /><textarea style="width:100%" id="inspiration_solution_1_10" name="entry.2087526347" rows="3"></textarea><br />
+						More solutions:<br /><textarea style="width:100%" id="more_inspiration_solutions_1" name="entry.1076502473" rows="3"></textarea><br />
 						<br />
 						</td>
 						<td id="explain_source_1" colspan="1" width="40%">
-						What inspired you 1:<br /><textarea cols="40" id="inspiration_explain_1_1" name="entry.231987172" rows="3"></textarea><br />
-						What inspired you 2:<br /><textarea cols="40" id="inspiration_explain_1_2" name="entry.2036569260" rows="3"></textarea><br />
-						What inspired you 3:<br /><textarea cols="40" id="inspiration_explain_1_3" name="entry.1330189626" rows="3"></textarea><br />
-						What inspired you 4:<br /><textarea cols="40" id="inspiration_explain_1_4" name="entry.489318433" rows="3"></textarea><br />
-						What inspired you 5:<br /><textarea cols="40" id="inspiration_explain_1_5" name="entry.1897412186" rows="3"></textarea><br />
-						What inspired you 6:<br /><textarea cols="40" id="inspiration_explain_1_6" name="entry.1435909855" rows="3"></textarea><br />
-						What inspired you 7:<br /><textarea cols="40" id="inspiration_explain_1_7" name="entry.179661302" rows="3"></textarea><br />
-						What inspired you 8:<br /><textarea cols="40" id="inspiration_explain_1_8" name="entry.221785788" rows="3"></textarea><br />
-						What inspired you 9:<br /><textarea cols="40" id="inspiration_explain_1_9" name="entry.2085492295" rows="3"></textarea><br />
-						What inspired you 10:<br /><textarea cols="40" id="inspiration_explain_1_10" name="entry.226881551" rows="3"></textarea><br />
-						What inspired you - More:<br /><textarea cols="40" id="more_inspiration_explain_1" name="entry.1309497841" rows="3"></textarea><br />
+						What inspired you 1:<br /><textarea style="width:100%" id="inspiration_explain_1_1" name="entry.231987172" rows="3"></textarea><br />
+						What inspired you 2:<br /><textarea style="width:100%" id="inspiration_explain_1_2" name="entry.2036569260" rows="3"></textarea><br />
+						What inspired you 3:<br /><textarea style="width:100%" id="inspiration_explain_1_3" name="entry.1330189626" rows="3"></textarea><br />
+						What inspired you 4:<br /><textarea style="width:100%" id="inspiration_explain_1_4" name="entry.489318433" rows="3"></textarea><br />
+						What inspired you 5:<br /><textarea style="width:100%" id="inspiration_explain_1_5" name="entry.1897412186" rows="3"></textarea><br />
+						What inspired you 6:<br /><textarea style="width:100%" id="inspiration_explain_1_6" name="entry.1435909855" rows="3"></textarea><br />
+						What inspired you 7:<br /><textarea style="width:100%" id="inspiration_explain_1_7" name="entry.179661302" rows="3"></textarea><br />
+						What inspired you 8:<br /><textarea style="width:100%" id="inspiration_explain_1_8" name="entry.221785788" rows="3"></textarea><br />
+						What inspired you 9:<br /><textarea style="width:100%" id="inspiration_explain_1_9" name="entry.2085492295" rows="3"></textarea><br />
+						What inspired you 10:<br /><textarea style="width:100%" id="inspiration_explain_1_10" name="entry.226881551" rows="3"></textarea><br />
+						What inspired you - More:<br /><textarea style="width:100%" id="more_inspiration_explain_1" name="entry.1309497841" rows="3"></textarea><br />
 						<br />
 						</td>
 						<td id="specific_source_1" colspan="1" width="40%">
-						Inspiration source id 1:<br /><textarea cols="40" id="inspiration_source_1_1" name="entry.2088415631" rows="3"></textarea><br />
-						Inspiration source id 2:<br /><textarea cols="40" id="inspiration_source_1_2" name="entry.2077441529" rows="3"></textarea><br />
-						Inspiration source id 3:<br /><textarea cols="40" id="inspiration_source_1_3" name="entry.311318780" rows="3"></textarea><br />
-						Inspiration source id 4:<br /><textarea cols="40" id="inspiration_source_1_4" name="entry.1273149936" rows="3"></textarea><br />
-						Inspiration source id 5:<br /><textarea cols="40" id="inspiration_source_1_5" name="entry.237667301" rows="3"></textarea><br />
-						Inspiration source id 6:<br /><textarea cols="40" id="inspiration_source_1_6" name="entry.1375352256" rows="3"></textarea><br />
-						Inspiration source id 7:<br /><textarea cols="40" id="inspiration_source_1_7" name="entry.1774926837" rows="3"></textarea><br />
-						Inspiration source id 8:<br /><textarea cols="40" id="inspiration_source_1_8" name="entry.640395032" rows="3"></textarea><br />
-						Inspiration source id 9:<br /><textarea cols="40" id="inspiration_source_1_9" name="entry.130655511" rows="3"></textarea><br />
-						Inspiration source id 10:<br /><textarea cols="40" id="inspiration_source_1_10" name="entry.1027911890" rows="3"></textarea><br />
-						More inspiration sources:<br /><textarea cols="40" id="more_inspiration_source_1" name="entry.477282171" rows="3"></textarea><br />
+						Inspiration id 1:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_1" name="entry.2088415631" rows="3"></textarea><br />
+						Inspiration id 2:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_2" name="entry.2077441529" rows="3"></textarea><br />
+						Inspiration id 3:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_3" name="entry.311318780" rows="3"></textarea><br />
+						Inspiration id 4:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_4" name="entry.1273149936" rows="3"></textarea><br />
+						Inspiration id 5:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_5" name="entry.237667301" rows="3"></textarea><br />
+						Inspiration id 6:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_6" name="entry.1375352256" rows="3"></textarea><br />
+						Inspiration id 7:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_7" name="entry.1774926837" rows="3"></textarea><br />
+						Inspiration id 8:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_8" name="entry.640395032" rows="3"></textarea><br />
+						Inspiration id 9:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_9" name="entry.130655511" rows="3"></textarea><br />
+						Inspiration id 10:<br /><textarea style="width:50%;margin-left:10" id="inspiration_source_1_10" name="entry.1027911890" rows="3"></textarea><br />
+						More inspiration ids:<br /><textarea style="width:50%;margin-left:10" id="more_inspiration_source_1" name="entry.477282171" rows="3"></textarea><br />
 						<br />
 						</td>
 						</tr>
@@ -970,35 +1019,97 @@ Statements related to this problem:<br/>
 						</div>
 
 						<div id="self_solutions_section1" style="display:block">
-						<table>
+						<table style="width:100%">
 						<tbody>
 						<tr style="border:2px solid #aaa;">
-						<td colspan="1" width="40%">
-						Solution 1:<br /><textarea cols="60" id="self_solution_1_1" name="entry.164619028" rows="3"></textarea><br />
-						Solution 2:<br /><textarea cols="60" id="self_solution_1_2" name="entry.255246931" rows="3"></textarea><br />
-						Solution 3:<br /><textarea cols="60" id="self_solution_1_3" name="entry.714652671" rows="3"></textarea><br />
-						Solution 4:<br /><textarea cols="60" id="self_solution_1_4" name="entry.936328001" rows="3"></textarea><br />
-						Solution 5:<br /><textarea cols="60" id="self_solution_1_5" name="entry.432462636" rows="3"></textarea><br />
-						Solution 6:<br /><textarea cols="60" id="self_solution_1_6" name="entry.1974457815" rows="3"></textarea><br />
-						Solution 7:<br /><textarea cols="60" id="self_solution_1_7" name="entry.49668693" rows="3"></textarea><br />
-						Solution 8:<br /><textarea cols="60" id="self_solution_1_8" name="entry.1248181641" rows="3"></textarea><br />
-						Solution 9:<br /><textarea cols="60" id="self_solution_1_9" name="entry.1443130783" rows="3"></textarea><br />
-						Solution 10:<br /><textarea cols="60" id="self_solution_1_10" name="entry.280309393" rows="3"></textarea><br />
-						More solutions:<br /><textarea cols="60" id="more_self_solutions_1" name="entry.1025646376" rows="3"></textarea><br />
+						<td colspan="1" width="50%">
+						Solution 1:<br /><textarea style="width:85%" id="self_solution_1_1" name="entry.164619028" rows="3"></textarea>
+						</td>
+						<td colspan="1" style="width:50%" >
+						What inspired you 1:<br /><textarea style="width:85%;" id="self_inspiration_explain_1_1" name="entry.1008899533" rows="3"></textarea><br />
+						</td>
+						</tr>
+
+						
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 2:<br /><textarea style="width:85%" id="self_solution_1_2" name="entry.255246931" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 2:<br /><textarea style="width:85%" id="self_inspiration_explain_1_2" name="entry.189345733" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 3:<br /><textarea style="width:85%" id="self_solution_1_3" name="entry.714652671" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 3:<br /><textarea style="width:85%" id="self_inspiration_explain_1_3" name="entry.1620162062" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 4:<br /><textarea style="width:85%" id="self_solution_1_4" name="entry.936328001" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 4:<br /><textarea style="width:85%" id="self_inspiration_explain_1_4" name="entry.335344347" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 5:<br /><textarea style="width:85%" id="self_solution_1_5" name="entry.432462636" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 5:<br /><textarea style="width:85%" id="self_inspiration_explain_1_5" name="entry.681893091" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 6:<br /><textarea style="width:85%" id="self_solution_1_6" name="entry.1974457815" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 6:<br /><textarea style="width:85%" id="self_inspiration_explain_1_6" name="entry.1055968095" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 7:<br /><textarea style="width:85%" id="self_solution_1_7" name="entry.49668693" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 7:<br /><textarea style="width:85%" id="self_inspiration_explain_1_7" name="entry.782925220" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 8:<br /><textarea style="width:85%" id="self_solution_1_8" name="entry.1248181641" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 8:<br /><textarea style="width:85%" id="self_inspiration_explain_1_8" name="entry.941382197" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 9:<br /><textarea style="width:85%" id="self_solution_1_9" name="entry.1443130783" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 9:<br /><textarea style="width:85%" id="self_inspiration_explain_1_9" name="entry.837215395" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						Solution 10:<br /><textarea style="width:85%" id="self_solution_1_10" name="entry.280309393" rows="3"></textarea><br />
+						</td>
+						<td colspan="1" style="width:40%" >
+						What inspired you 10:<br /><textarea style="width:85%" id="self_inspiration_explain_1_10" name="entry.2022967023" rows="3"></textarea><br />
+						</td>
+						</tr>
+						<tr style="border:2px solid #aaa;">
+						<td colspan="1" style="width:50%" >
+						More solutions:<br /><textarea style="width:85%" id="more_self_solutions_1" name="entry.1025646376" rows="3"></textarea><br />
 						<br />
 						</td>
-						<td colspan="1" width="40%">
-						What inspired you 1:<br /><textarea cols="60" id="self_inspiration_explain_1_1" name="entry.1008899533" rows="3"></textarea><br />
-						What inspired you 2:<br /><textarea cols="60" id="self_inspiration_explain_1_2" name="entry.189345733" rows="3"></textarea><br />
-						What inspired you 3:<br /><textarea cols="60" id="self_inspiration_explain_1_3" name="entry.1620162062" rows="3"></textarea><br />
-						What inspired you 4:<br /><textarea cols="60" id="self_inspiration_explain_1_4" name="entry.335344347" rows="3"></textarea><br />
-						What inspired you 5:<br /><textarea cols="60" id="self_inspiration_explain_1_5" name="entry.681893091" rows="3"></textarea><br />
-						What inspired you 6:<br /><textarea cols="60" id="self_inspiration_explain_1_6" name="entry.1055968095" rows="3"></textarea><br />
-						What inspired you 7:<br /><textarea cols="60" id="self_inspiration_explain_1_7" name="entry.782925220" rows="3"></textarea><br />
-						What inspired you 8:<br /><textarea cols="60" id="self_inspiration_explain_1_8" name="entry.941382197" rows="3"></textarea><br />
-						What inspired you 9:<br /><textarea cols="60" id="self_inspiration_explain_1_9" name="entry.837215395" rows="3"></textarea><br />
-						What inspired you 10:<br /><textarea cols="60" id="self_inspiration_explain_1_10" name="entry.2022967023" rows="3"></textarea><br />
-						What inspired you - More:<br /><textarea cols="60" id="more_self_inspiration_explain_1" name="entry.1048140812" rows="3"></textarea><br />
+						<td colspan="1" style="width:40%" >
+						What inspired you - More:<br /><textarea style="width:85%" id="more_self_inspiration_explain_1" name="entry.1048140812" rows="3"></textarea><br />
 						<br />
 						</td>
 						</tr>
