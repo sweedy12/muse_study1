@@ -36,7 +36,7 @@ const numOfSecondsSelfPart = 5; // 120
 const numOfSecondsInspirationPart = 15; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 5; // 120
-var totalSecondsWithInspiration = 240; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsWithInspiration = 15; //480 todo - change this to see effect on times, table snapshot
 
 // var curr_graph_url_problem;
 
@@ -471,7 +471,7 @@ function myTimerInspirationAnswer() {
 		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 45%">
 		<tbody>
 		<tr>
-		<td style="display:none"><b>Inspirational texts source:</b></td>
+		<td style="display:none"><b>Inspirational texts:</b></td>
 		</tr>
 		<br/>
 		<tr style="border: 2px solid #080809;">
@@ -496,13 +496,13 @@ function myTimerInspirationAnswer() {
 		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 45%">
 		<tbody>
 		<tr>
-		<td style="display:none"><b>Inspirational texts source:</b></td>
+		<td style="display:none"><b>Inspirational texts:</b></td>
 		</tr>
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
 	<b><mark>1.</mark></b> Consider the problem of: <b>Drying clothes.</b> <br/>
-	<UL type = "square">
+	<UL type = "square" style="margin-top: -2px;">
 	<LI>
 Concepts related to this problem:<br/>
 <UL>
@@ -511,7 +511,7 @@ Concepts related to this problem:<br/>
 </UL></UL>
 <br/>
 <b><mark>2.</mark></b> Consider the problem of:  <b>Drying nail polish.</b><br/>
-<UL type = "square">
+<UL type = "square" style="margin-top: -2px;">
 <LI>
 Concepts related to this problem:<br/>
 <UL>
@@ -519,7 +519,7 @@ Concepts related to this problem:<br/>
 </UL></UL>
 <br/>
 <b><mark>3.</mark></b> Consider the problem of: <b>Washing hair without water.</b><br/>
-<UL type = "square">
+<UL type = "square" style="margin-top: -2px;">
 <LI>Concepts related to this problem:<br/>
 <UL>
 <LI>Baby powder<br/>
@@ -541,13 +541,13 @@ Concepts related to this problem:<br/>
 		<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
 		<tbody>
 		<tr>
-		<td style="display:none"><b>Inspirational texts source:</b></td>
+		<td style="display:none"><b>Inspirational texts:</b></td>
 		</tr>
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
 <b><mark>1.</mark></b> Consider the problem of: <b>Drying clothes.</b><br/>
-<UL type="square">
+<UL type="square" style="margin-top: -2px;">
 <LI> 
 Statements related to this problem:<br/>
  <UL> 
@@ -557,7 +557,7 @@ Statements related to this problem:<br/>
 
 </UL></UL>
 <b><mark>2.</mark></b> Consider the problem of: <b>Drying nail polish.</b><br/>
-<UL type="square">
+<UL type="square" style="margin-top: -2px;">
 <LI> 
 Statements related to this problem:<br/>
 <UL>
@@ -565,7 +565,7 @@ Statements related to this problem:<br/>
 
 </UL></UL>
 <b><mark>3.</mark></b> Consider the problem of: <b>Washing hair without water.</b><br/>
-<UL type="square">
+<UL type="square" style="margin-top: -2px;">
 <LI> 
 Statements related to this problem:<br/>
 <UL>
@@ -625,8 +625,7 @@ Statements related to this problem:<br/>
 		Solution 2:<br/><textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
 		</td>
 		<td colspan="2" width="40%">
-		What inspired you 2:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: 
-		you spray it on your nails and the nail polish gets dry faster.</textarea><br />
+		What inspired you 2:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
 		</td>
 		</tr>
 		<tr style="border:2px solid #aaa;">
@@ -662,8 +661,7 @@ Statements related to this problem:<br/>
 		Solution 2:<br/><textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
 		</td>
 		<td colspan="2" width="40%">
-		What inspired you 2:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: 
-		you spray it on your nails and the nail polish dries faster.</textarea><br />
+		What inspired you 2:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish dries faster.</textarea><br />
 		</td>
 		<td colspan="2" width="20%">
 		Inspiration id 2:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">2</textarea><br />
@@ -759,7 +757,8 @@ Statements related to this problem:<br/>
 							<p align="justify">
 							In the box below, you will see a list of 20 inspirational texts. 
 							<br />
-								Use the numbers on the left as the inspiration id.
+								Use the numbers on the left as the inspiration id. <br/>
+								<font color="#dc143c"><b>Do not</b></font> use any search engine or knowledge source (however, you can translate the inspiration source if you wish).<br/>
 								Fill the the table with as many ideas as you come up with. You do not have to fill the entire table.
 								</br>
 								If you come up with more than 10 ideas, write all of them in the "more" entries.
@@ -805,7 +804,8 @@ Statements related to this problem:<br/>
 							<p align="justify">
 							In the box below, you will see a list of 20 inspirational texts. 
 							<br />
-								Use the numbers on the left as the inspiration id.
+								Use the numbers on the left as the inspiration id.<br/>
+								<font color="#dc143c"><b>Do not</b></font> use any search engine or knowledge source (however, you can translate the inspiration source if you wish).<br/>
 								Fill the the table with as many ideas as you come up with. You do not have to fill the entire table.
 								</br>
 								If you come up with more than 10 ideas, write all of them in the "more" entries.
@@ -850,7 +850,8 @@ Statements related to this problem:<br/>
 							<p align="justify">
 							In the box below, you will see a list of 20 inspirational texts. 
 							<br />
-								Use the numbers on the left as the inspiration id.
+								Use the numbers on the left as the inspiration id.<br/>
+								<font color="#dc143c"><b>Do not</b></font> use any search engine or knowledge source (however, you can translate the inspiration source if you wish).<br/>
 								Fill the the table with as many ideas as you come up with. You do not have to fill the entire table.
 								</br>
 								If you come up with more than 10 ideas, write all of them in the "more" entries.
@@ -945,9 +946,9 @@ Statements related to this problem:<br/>
 				<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
 				<tbody>
 				<tr>
-				<td id="inspiration_box_1_text_line" style="display:none"><b>Inspirational texts source:</b></td>
-				<td id="inspiration_box_1_links_line" style="display:none"><b>Inspirational texts source:</b></td>
-				<td id="inspiration_box_1_graph_line" style="display:none"><b>Inspirational texts source:</b></td>
+				<td id="inspiration_box_1_text_line" style="display:none"><b>Inspirational texts:</b></td>
+				<td id="inspiration_box_1_links_line" style="display:none"><b>Inspirational texts:</b></td>
+				<td id="inspiration_box_1_graph_line" style="display:none"><b>Inspirational texts:</b></td>
 				</tr>
 				<br/>
 				<tr style="border: 2px solid #080809;">
