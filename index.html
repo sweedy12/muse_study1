@@ -33,10 +33,10 @@ var section = 0;
 var mtimer;
 
 const numOfSecondsSelfPart = 5; // 120
-const numOfSecondsInspirationPart = 600; //480 todo - change this to see
+const numOfSecondsInspirationPart = 6; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 5; // 120
-var totalSecondsWithInspiration = 600; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsWithInspiration = 6; //480 todo - change this to see effect on times, table snapshot
 
 // var curr_graph_url_problem;
 
@@ -185,6 +185,37 @@ window.onload = function() {document.getElementById('submitButton'); }
 			showSection("pre");
 			step += 1
 	}
+	function ClickOnFirstReturnButton(){
+	chosen_condition = "cond_3"; //change condition here
+	//get condition value from document:
+	if (document.getElementById("condition_chooser").value != ""){
+		chosen_condition = "cond_"+document.getElementById("condition_chooser").value;
+	}
+	
+			logCurrentTime("second instructions section")
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		    phaseName= stepsNames[step-1]
+		    document.getElementById("pre").style.display ="block";
+			document.getElementById("instructions").style.display ="none";
+			if (chosen_condition === 'cond_1') {
+				document.getElementById("instructions_cond1").style.display ="none";}
+			if (chosen_condition === 'cond_2'){
+				document.getElementById("instructions_cond2").style.display ="none";}
+			if (chosen_condition === 'cond_3'){
+				document.getElementById("instructions_cond3").style.display ="none";;
+				document.getElementById("instructions_cond123").style.display ="none"}
+			if (chosen_condition === 'cond_4'){
+			document.getElementById("instructions_cond_123").style.display ="none"
+			document.getElementById("instructions_next_cond_123").style.display ="none"
+			document.getElementById("instructions_next_cond_4").style.display ="none"
+			document.getElementById("example_solutions_inspirations_cond123").style.display ="none"
+			
+				showSection("example_solutions_inspirations_cond4");
+				}
+			step -= 1
+	}
+	
 	//second page - moving to instructions page 2
 	function clickOnInitialNextButton(){
 	chosen_condition = "cond_3"; //change condition here
@@ -215,6 +246,14 @@ window.onload = function() {document.getElementById('submitButton'); }
 				showSection("example_solutions_inspirations_cond4");
 				}
 			step += 1
+	}
+	
+		function ClickOnSecondReturnButton(){
+			document.getElementById("instructions2").style.display ="none";
+			step -= 2
+			clickOnInitialNextButton()
+			
+			
 	}
 	
 	//third page - instructions page 2 to next page
@@ -384,7 +423,6 @@ function myTimerInspirationAnswer() {
 		<br />
 		<br />
 		(This task is for academic study, not for commercial use. Ideas that you generate will remain yours.)<br/><br/>
-
 <input name="buttonpre" onclick="clickOnInitialNextButton()" type="button" style="font-family: Tahoma,serif; font-size: 18px" value="Continue to the next instructions!" /></div>
 
 
@@ -442,6 +480,7 @@ function myTimerInspirationAnswer() {
 		Please try to think hard and be creative!<br />
     	<br />
 		<br />
+		<input name="buttonreturn1" onclick="ClickOnFirstReturnButton()" type="button" style="font-family: Tahoma,serif; font-size: 18px" value="Return to the previous instructions page" />
         <input name="buttonpre2" onclick="clickOnInitialNext2Button()" type="button"
 			   style="font-family: Tahoma,serif; font-size: 18px" value="Continue to the next instructions!" /></div>
 
@@ -688,6 +727,7 @@ Statements related to this problem:<br/>
 		Please try to think hard and be creative!<br />
     	<br />
 		<br />
+		<input name="buttonreturn1" onclick="ClickOnFirstReturnButton()" type="button" style="font-family: Tahoma,serif; font-size: 18px" value="Return to the previous instructions page" />
         <input name="buttonpre2" onclick="clickOnInitialNext2Button()" type="button"
 			   style="font-family: Tahoma,serif; font-size: 18px" value="Continue to the next instructions!" /></div>
 
@@ -705,8 +745,10 @@ Statements related to this problem:<br/>
 		Please do not start the task if you do not have the time.
 		<br/>
 		<br/>
+	<input name="buttonreutrn2" onclick="ClickOnSecondReturnButton()" type="button"
+		   style="font-family: Tahoma,serif; font-size: 18px" value="Return to the previous instructions page!" />
     <input name="buttonpre" onclick="goToMainSection()" type="button"
-		   style="font-family: Tahoma,serif; font-size: 18px" value="Continue to the first section!" /></div>
+		   style="font-family: Tahoma,serif; font-size: 18px" value="Continue to the experiment!" /></div>
 
 <div id="main" style="display:none;margin:30px 50px 20px 50px; font-family: Tahoma,serif; font-size: 18px">
 <div id="banner" style="background-color:paleturquoise" width="100%">Find solutions yourself</div>
@@ -1164,6 +1206,14 @@ Statements related to this problem:<br/>
 			<div class="panel-body" id="lang"><b>What creative activities do you engage with? For example writing, drawing, coding etc... <br />
 			<textarea cols="40" id="textlang" name="entry.1182015162" rows="2"> </textarea> <input id="hidden_html_lang" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2_lang" name="saved_html_purpose" type="hidden" value="" /></b></div>
 			<br />
+			<div class="panel-body" id="lang"><b> Did you find the inspirations given to you helpful in coming up with new ideas? </b><br />
+			<select name="cars" id="cars">
+			<option value="empty"> </option>
+			<option value="yes">Yes</option>
+			<option value="no">No</option> 
+  </select>
+  </br></br>
+			
 			<button id="submitButton" name="buttonSubmit" style="font-family: Tahoma,serif; font-size: 18px" type="submit" value="submit task">submit task</button>
 		</div>
 			<div class="row">
