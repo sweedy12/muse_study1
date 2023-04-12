@@ -130,7 +130,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 				if (chosen_condition == "cond_4")
 				{
 					str += ": solution" + str_idx + ": " + document.getElementById('self_solution_1_'+str_idx).value
-				str += ": explanation" + str_idx + ": " + document.getElementById('self_explain_1_'+str_idx).value
+				str += ": explanation" + str_idx + ": " + document.getElementById('self_inspiration_explain_1_'+str_idx).value
 				str += "\n"
 				}
 				else{
@@ -146,8 +146,8 @@ window.onload = function() {document.getElementById('submitButton'); }
 			
 			if (chosen_condition == "cond_4"){
 			str += "more entry: "
-			str += "solution more: " + document.getElementById('more_self_solution_1').value
-				str += "explanation more: " + document.getElementById('more_self_explain_1').value
+			str += "solution more: " + document.getElementById('more_self_solutions_1').value
+				str += "explanation more: " + document.getElementById('more_self_inspiration_explain_1').value
 
 				str += "\n"
 			}
@@ -1221,19 +1221,23 @@ Statements related to this problem:<br/>
 
 			<br />
 			<div class="panel-body" id="helpfulq"><b> Did you find the inspirations given to you helpful in coming up with new ideas? </b><br /> <br/>
-			<select name="helpful" id="helpful">
-			<option value="empty"> </option>
-			<option value="yes">Yes</option>
-			<option value="no">No</option> 
-  </select>
+			<input type="radio" id="no" name="entry.275929979" value="no"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  
+			<input type="radio" id="yes" name="entry.275929979" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			</br>
+			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  <label for="yes">Yes</label> &nbsp &nbsp
   </div>
   </br></br>
   <div class="panel-body" id="useagainq"><b> If possible, would you use such inspirations when trying to come up with new ideas in the future?  </b><br/> <br/>
-			<select name="useagain" id="helpful" name="entry.449379310">
-			<option value="empty" name="entry.449379310"> </option>
-			<option value="yes" name="entry.449379310">Yes</option>
-			<option value="no" name="entry.449379310">No</option> 
-  </select>
+			<input type="radio" id="no" name="entry.449379310" value="no"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  
+			<input type="radio" id="yes" name="entry.449379310" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			</br>
+			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+  <label for="yes">Yes</label> &nbsp &nbsp
+  
+
   </div>
   </br></br>
     <div class="panel-body" id="hardq"><b> How hard did you find this task?  </b><br />
@@ -1256,6 +1260,28 @@ Statements related to this problem:<br/>
 
   </br></br>
   </div>
+  </br> </br>
+
+ <div class="panel-body" id="hardq"><b> How would you rate the time  you were given to perform the task?  </b><br/><br/>
+<input type="radio" id="lotmore" name="entry.1307459435" value="lot more">
+<label for="lotmore">I needed a lot more time</label>
+</br></br>
+<input type="radio" id="bitmore" name="entry.1307459435" value="bit more">
+<label for="bitmore">I needed a bit more time</label>
+</br></br>
+
+<input type="radio" id="perfect" name="entry.1307459435" value="perfect">
+<label for="perfect">I didn't need more time</label>
+</br></br>
+
+<input type="radio" id="bitless" name="entry.1307459435" value="bit less">
+<label for="bitless">I had a bit more time than I needed</label>
+</br></br>
+
+<input type="radio" id="lotless" name="entry.1307459435" value="lot less">
+<label for="lotless">I had a lot more time than I needed</label>
+</br></br>
+ </div>
   
 
   
@@ -1275,7 +1301,7 @@ Statements related to this problem:<br/>
 			Before submitting the task, we would appreciate it if you could answer these questions:.
 			<br />
   </br></br>
-    <div class="panel-body" id="hardq"><b> How hard did you find this task?  </b><br />
+    <div class="panel-body" id="hardq"><b> How hard did you find this task?  </b><br /><br/>
 	<input type="radio" id="veryeasy" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
 <input type="radio" id="fairlyeasy" name="entry.1094765590" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -1292,6 +1318,29 @@ Statements related to this problem:<br/>
 <label for="fairlyhard">fairly hard</label> &nbsp &nbsp &nbsp &nbsp &nbsp
   <label for="veryhard">very hard</label> &nbsp &nbsp &nbsp &nbsp
 </div>
+
+</br> </br>
+
+ <div class="panel-body" id="hardq"><b> How would you rate the time  you were given to perform the task?  </b><br />
+<input type="radio" id="lotmore" name="entry.1307459435" value="lot more">
+<label for="lotmore">I needed a lot more time</label>
+</br></br>
+<input type="radio" id="bitmore" name="entry.1307459435" value="bit more">
+<label for="bitmore">I needed a bit more time</label>
+</br></br>
+
+<input type="radio" id="perfect" name="entry.1307459435" value="perfect">
+<label for="perfect">I didn't need more time</label>
+</br></br>
+
+<input type="radio" id="bitless" name="entry.1307459435" value="bit less">
+<label for="bitless">I had a bit more time than I needed</label>
+</br></br>
+
+<input type="radio" id="lotless" name="entry.1307459435" value="lot less">
+<label for="lotless">I had a lot more time than I needed</label>
+</br></br>
+ </div>
 
   </br></br>
 
