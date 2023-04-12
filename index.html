@@ -33,10 +33,10 @@ var section = 0;
 var mtimer;
 
 const numOfSecondsSelfPart = 5; // 120
-const numOfSecondsInspirationPart = 6; //480 todo - change this to see
+const numOfSecondsInspirationPart = 600; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 5; // 120
-var totalSecondsWithInspiration = 6; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsWithInspiration = 600; //480 todo - change this to see effect on times, table snapshot
 
 // var curr_graph_url_problem;
 
@@ -163,6 +163,19 @@ window.onload = function() {document.getElementById('submitButton'); }
 			
 
 	}
+
+
+	function endOfSurveyubmit(){
+	alert("called the function");
+		if (document.getElementById('helpful').value == "empty"){
+			alert ("test 1");
+		}
+		else {
+			alert("entered else!");
+			document.getElementById("endOfTaskForm").submit();
+		}
+	}
+	
 
 	function writeToLogger(log){
 		document.getElementById('logger').value += log + '\n'
@@ -332,7 +345,15 @@ function submitTask(){
 
 	// show submit elements
 	document.getElementById("banner").innerHTML = "Short survey"
-	document.getElementById("submit").style.display ="block";
+	
+	if (chosen_condition == "cond_4"){
+		document.getElementById("submit_cond4").style.display ="block";
+	}
+	else {
+		document.getElementById("submit_cond123").style.display ="block";
+	
+	}
+	
 	//alert(document.getElementById("table_logger").value);
 
 }
@@ -357,7 +378,7 @@ function myTimerInspirationAnswer() {
 }
 </script>
 
-<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScZtAYVhBm-377FDCohVeuGdYNh7gY9GXXgBEN1wc3Oh5iAZg/formResponse" method="post">
+<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScZtAYVhBm-377FDCohVeuGdYNh7gY9GXXgBEN1wc3Oh5iAZg/formResponse" method="post" id= "endOfTaskForm">
 <section class="container" id="Other">
 <!--<section  id="Other">-->
 	<div class="col-xs-12 col-md-12">
@@ -1187,7 +1208,7 @@ Statements related to this problem:<br/>
 				</tbody>
 			</table>
 			</div>
-		<div id="submit" style="display:none">
+		<div id="submit_cond123" style="display:none">
 			Great, you are done! <br />
 
 			If you have some comments on the task, or any ideas for improvement, you can write them in the box bellow:
@@ -1197,14 +1218,7 @@ Statements related to this problem:<br/>
 			 <br />
 			Before submitting the task, we would appreciate it if you could answer these questions:.
 			<br />
-			We note that this is <font color="red">not mandatory</font>, you could skip it and submit the task.
 
-			<br />
-			<br />
-
-
-			<div class="panel-body" id="lang"><b>What creative activities do you engage with? For example writing, drawing, coding etc... <br />
-			<textarea cols="40" id="textlang" name="entry.1182015162" rows="2"> </textarea> <input id="hidden_html_lang" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2_lang" name="saved_html_purpose" type="hidden" value="" /></b></div>
 			<br />
 			<div class="panel-body" id="helpfulq"><b> Did you find the inspirations given to you helpful in coming up with new ideas? </b><br /> <br/>
 			<select name="helpful" id="helpful">
@@ -1212,24 +1226,26 @@ Statements related to this problem:<br/>
 			<option value="yes">Yes</option>
 			<option value="no">No</option> 
   </select>
+  </div>
   </br></br>
   <div class="panel-body" id="useagainq"><b> If possible, would you use such inspirations when trying to come up with new ideas in the future?  </b><br/> <br/>
-			<select name="useagain" id="helpful">
-			<option value="empty"> </option>
-			<option value="yes">Yes</option>
-			<option value="no">No</option> 
+			<select name="useagain" id="helpful" name="entry.449379310">
+			<option value="empty" name="entry.449379310"> </option>
+			<option value="yes" name="entry.449379310">Yes</option>
+			<option value="no" name="entry.449379310">No</option> 
   </select>
+  </div>
   </br></br>
     <div class="panel-body" id="hardq"><b> How hard did you find this task?  </b><br />
-	<input type="radio" id="veryeasy" name="hard_questions" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+	<input type="radio" id="veryeasy" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="fairlyeasy" name="hard_questions" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="fairlyeasy" name="entry.1094765590" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 
-	<input type="radio" id="moderate" name="hard_questions" value="moderate">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+	<input type="radio" id="moderate" name="entry.1094765590" value="moderate">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="fairlyhard" name="hard_questions" value="fairly hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="fairlyhard" name="entry.1094765590" value="fairly hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="veryhard" name="hard_questions" value="very hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="veryhard" name="entry.1094765590" value="very hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 </br> 
 <label for="very easy">very easy</label> &nbsp &nbsp
   <label for="fairlyeasy">fairly easy</label> &nbsp &nbsp
@@ -1239,11 +1255,53 @@ Statements related to this problem:<br/>
 
 
   </br></br>
+  </div>
+  
 
   
 			
-			<button id="submitButton" name="buttonSubmit" style="font-family: Tahoma,serif; font-size: 18px" type="submit" value="submit task">submit task</button>
+			<input name="buttonSubmit" style="font-family: Tahoma,serif; font-size: 18px" onclick = "endOfSurveyubmit()" value="submit task" type="button"></button>
 		</div>
+		
+		
+		
+		<div id="submit_cond4" style="display:none">
+			Great, you are done! <br />
+
+			If you have some comments on the task, or any ideas for improvement, you can write them in the box bellow:
+			<div class="panel-body" id="feedback"><b>Comments? (Optional)<br />
+			<textarea cols="40" id="textcomments" name="entry.1532607015" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
+			 <br />
+			Before submitting the task, we would appreciate it if you could answer these questions:.
+			<br />
+  </br></br>
+    <div class="panel-body" id="hardq"><b> How hard did you find this task?  </b><br />
+	<input type="radio" id="veryeasy" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  
+<input type="radio" id="fairlyeasy" name="entry.1094765590" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+	<input type="radio" id="moderate" name="entry.1094765590" value="moderate">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  
+<input type="radio" id="fairlyhard" name="entry.1094765590" value="fairly hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  
+<input type="radio" id="veryhard" name="entry.1094765590" value="very hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+</br> 
+<label for="very easy">very easy</label> &nbsp &nbsp
+  <label for="fairlyeasy">fairly easy</label> &nbsp &nbsp
+<label for="moderate">moderate</label> &nbsp &nbsp
+<label for="fairlyhard">fairly hard</label> &nbsp &nbsp &nbsp &nbsp &nbsp
+  <label for="veryhard">very hard</label> &nbsp &nbsp &nbsp &nbsp
+</div>
+
+  </br></br>
+
+  
+			
+			<input name="buttonSubmit" style="font-family: Tahoma,serif; font-size: 18px" onclick = "endOfSurveyubmit()" value="submit task" type="button"></button>
+		
+		</div>
+		
+		
 			<div class="row">
 
 <style type="text/css">.container {
