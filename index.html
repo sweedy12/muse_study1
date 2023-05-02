@@ -32,11 +32,11 @@ var phase=1; // three phases, corresponding to conditions
 var section = 0;
 var mtimer;
 
-const numOfSecondsSelfPart = 5; // 120
-const numOfSecondsInspirationPart = 600; //480 todo - change this to see
+const numOfSecondsSelfPart = 80; // 120
+const numOfSecondsInspirationPart = 480; //480 todo - change this to see
 
-var totalSecondsSelfAnswer = 5; // 120
-var totalSecondsWithInspiration = 600; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsSelfAnswer = 80; // 120
+var totalSecondsWithInspiration = 480; //480 todo - change this to see effect on times, table snapshot
 
 // var curr_graph_url_problem;
 
@@ -165,8 +165,49 @@ window.onload = function() {document.getElementById('submitButton'); }
 	}
 
 
+
 	function endOfSurveyubmit(){
-		document.getElementById("endOfTaskForm").submit();
+	//alert("called the function");
+	var all_fine = 0;
+	if (chosen_condition != "cond_4")
+	{
+		if (!(document.getElementById('helpful_no').checked || document.getElementById('helpful_yes').checked)) {
+			all_fine = 1;
+		}
+		if (!(document.getElementById('useagain_no').checked || document.getElementById('useagain_yes').checked)) {
+			all_fine = 1;
+		}
+	}
+	
+	let a = document.getElementById('hardq_veryeasy').checked;
+	let b = document.getElementById('hardq_fairlyeasy').checked;
+	let c = document.getElementById('hardq_moderate').checked;
+	let d = document.getElementById('hardq_fairlyhard').checked;
+	let e = document.getElementById('hardq_veryhard').checked;
+	
+	if (!(a||b||c||d||e))
+	{
+		all_fine = 1;
+	}
+	let f = document.getElementById('timeq_lotless').checked;
+	let g = document.getElementById('timeq_lotmore').checked;
+	let h = document.getElementById('timeq_perfect').checked;
+	let i = document.getElementById('timeq_bitless').checked;
+	let k = document.getElementById('timeq_bitmore').checked;
+	
+	if (!(a||b||c||d||e))
+	{
+		all_fine = 1;
+	}
+	
+	if (all_fine == 0){
+	document.getElementById("endOfTaskForm").submit();	
+	}
+	else
+	{
+		alert ("Please complete all survey questions to submit the task");
+
+	}
 	}
 	
 
@@ -306,6 +347,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 	function showInspirationSection(cond){
 			document.getElementById('scroll_inspiration_solutions').scrollTop = 0;
 			showSection("inspiration_based_solutions_blank_lines")
+			document.getElementById("task_chosen_problem").innerHTML = chosen_problem;
 			showInspirationBlankLinesAccordingToPhase(cond)
 			document.getElementById("button3" + new_to_old_cond_mapping[chosen_order[section]]).style.display ="none";
 			mtimer = setInterval(myTimerInspirationAnswer, 1000)
@@ -351,9 +393,21 @@ function submitTask(){
 
 }
 
+
+
 function myTimerInspirationAnswer() {
-	//todo - here I should probably insert the saving of the table logic
-    document.getElementById("timer_inspiration").innerHTML = 'you have ' + totalSecondsWithInspiration + ' seconds left';
+	//todo - change here to go down every minute, rather then seconds
+	const minutesLeft  = Math.floor(totalSecondsWithInspiration / 60);
+	if (minutesLeft  > 0)
+	{
+    document.getElementById("timer_inspiration").innerHTML = 'you have ' + minutesLeft + ' minutes left';
+		
+	}
+	else
+	{
+		document.getElementById("timer_inspiration").innerHTML = 'you have less than a minute left';
+
+		}
 	totalSecondsWithInspiration--;
 
 	if (totalSecondsWithInspiration<0)
@@ -451,9 +505,9 @@ function myTimerInspirationAnswer() {
 		<br/>
 
 		During the experiment we will show you a single <font color="#9932cc"><b>problem</b></font>.
-		Then, we will ask you to think of solutions to that problem.
+		Then, we will ask you to think of original solutions to that problem (<b>not the common ways to solve the problem</b>).
 	    <br />
-		You will have <b>10 minutes</b> to find solutions.
+		You will have <b>15 minutes</b> to find solutions.
 	<br />
 	<br />
 	<u>The output of this task:</u>
@@ -509,7 +563,7 @@ function myTimerInspirationAnswer() {
 		<br/>
 
 		During the experiment we will show you a single <font color="#9932cc"><b>problem</b></font>.
-		Then, we will ask you to think of solutions to that problem.
+		Then, we will ask you to think of original solutions to that problem (<b>not the common ways to solve the problem</b>).
 	    <br />
 		<br />
 		<div id ="instructions_cond_123" style="display:block">
@@ -529,7 +583,7 @@ function myTimerInspirationAnswer() {
 		<br/>
 		<tr style="border: 2px solid #080809;">
 		<td>
-		<b><mark>1.</mark></b> Consider the problem of: <b>Drying clothes.</b><br/>
+		<b><mark background-color="red">1.</mark></b> Consider the problem of: <b>Drying clothes.</b><br/>
 
 <b><mark>2.</mark></b> Consider the problem of: <b>Drying nail polish.</b><br/>
 
@@ -638,7 +692,7 @@ Statements related to this problem:<br/>
 		</table>
 		</div>
 		
-		You will have <b>10 minutes</b> to find solutions.
+		You will have <b>15 minutes</b> to find solutions.
 	<br />
 	<br />
 	<div id ="instructions_next_cond_123" style="display:block">
@@ -646,7 +700,7 @@ Statements related to this problem:<br/>
 		During this task, you will be asked to fill in a table with
 		(1) your <font color="#006400"><b>original solutions</b></font>,
 		(2) an <b>explanation of what you were inspired by</b>, and
-		(3) the <font color="#00008b"><b>inspiration source id.</b></font>
+		(3) the <font color="#00008b"><b>inspiration source id (the number in </b></font>  <font color="red"><b>red).</b></font>
 		(Inspirations have id numbers assigned to them).
 		In case you didn't use an inspiration source for your solution, write <b> ME </b> in the inspiration id column .
 		<br/>
@@ -755,7 +809,7 @@ Statements related to this problem:<br/>
 	<div id="banner_instruction_3" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 3</div>
 	<br/>
 	<br/>
-		Overall, <b>total amount of time required to answer the survey is around <**10**> minutes.</b>
+		Overall, <b>total amount of time required to complete the task is around <**15**> minutes.</b>
 		Please do not start the task if you do not have the time.
 		<br/>
 		<br/>
@@ -767,8 +821,7 @@ Statements related to this problem:<br/>
 <div id="main" style="display:none;margin:30px 50px 20px 50px; font-family: Tahoma,serif; font-size: 18px">
 <div id="banner" style="background-color:paleturquoise" width="100%">Find solutions yourself</div>
 	<br />
-	<div id="question_instruction">In this task, we ask you to find solutions to the problem:
-		<font color="#9932cc"><b><span id="task_chosen_problem"></span></b></font></div>
+	
 	<div id="one"><script language="Javascript">
 
 		var random_number_problem = Math.floor(Math.random() * possible_problems.length)
@@ -785,7 +838,7 @@ Statements related to this problem:<br/>
 
 		writeToLogger("Chosen condition: " + chosen_condition + '\n')
 
-		document.getElementById("task_chosen_problem").innerHTML = chosen_problem;
+		//document.getElementById("task_chosen_problem").innerHTML = chosen_problem;
 		// curr_graph_url_problem = chosen_problem.replace(" ", "%20");
 
 		// log beginning time
@@ -811,7 +864,7 @@ Statements related to this problem:<br/>
 							<p><font face="Times New Roman"><input id="stimulus1" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
 							<p align="justify">
-							In the box below, you will see a list of 20 inspirational texts. 
+							After clicking on the button below, you will be presented with a problem and the inspirations. 
 							<br />
 								Use the numbers on the left as the inspiration id. <br/>
 								<font color="#dc143c"><b>Do not</b></font> use any search engine or external knowledge source (you can use a dictionary).<br/>
@@ -845,9 +898,6 @@ Statements related to this problem:<br/>
 							</div>
 							<br />
 							<br />
-							You will have <b>10 minutes</b> to complete this part.
-							<br />
-							<br />
 						<input id="button3cond_2" name="button3" onclick="showInspirationSection('cond_2')" style="font-family: Tahoma,serif; font-size: 18px" type="button" value="Got it, let's go!" />
 						</td>
 					</tr>
@@ -858,7 +908,8 @@ Statements related to this problem:<br/>
 							<p><font face="Times New Roman"><input id="stimulus2" name="stimulus2" type="hidden" value="" /></font></p>
 							<br />
 							<p align="justify">
-							In the box below, you will see a list of 20 inspirational texts. 
+							
+							After clicking on the button below, you will be presented with a problem and the inspirations. 
 							<br />
 								Use the numbers on the left as the inspiration id.<br/>
 								<font color="#dc143c"><b>Do not</b></font> use any search engine or external knowledge source (you can use a dictionary).<br/>
@@ -892,9 +943,6 @@ Statements related to this problem:<br/>
 							</div>
 							<br />
 							<br />
-							You will have <b>10 minutes</b> to complete this part.
-							<br />
-							<br />
 						<input id="button3cond_3" name="button3" style="font-family: Tahoma,serif; font-size: 18px" onclick="showInspirationSection('cond_3')" type="button" value="Got it, let's go!" /></td>
 					</tr>
 				</tbody>
@@ -904,7 +952,7 @@ Statements related to this problem:<br/>
 							<p><font face="Times New Roman"><input id="stimulus3" name="stimulus3" type="hidden" value="" /></font></p>
 							<br />
 							<p align="justify">
-							In the box below, you will see a list of 20 inspirational texts. 
+							After clicking on the button below, you will be presented with a problem and the inspirations. 
 							<br />
 								Use the numbers on the left as the inspiration id.<br/>
 								<font color="#dc143c"><b>Do not</b></font> use any search engine or external knowledge source (you can use a dictionary).<br/>
@@ -936,9 +984,6 @@ Statements related to this problem:<br/>
 								</tbody>
 								</table>
 							</div>
-							<br />
-							<br />
-							You will have <b>10 minutes</b> to complete this part.
 							<br />
 							<br />
 						<input id="button3cond_1" name="button3" style="font-family: Tahoma,serif; font-size: 18px" onclick="showInspirationSection('cond_1')" type="button" value="Got it, let's go!" /></td>
@@ -979,9 +1024,6 @@ Statements related to this problem:<br/>
 							</div>
 							<br />
 							<br />
-							You will have <b>10 minutes</b> to complete this part.
-							<br />
-							<br />
 						<input id="button3cond_4" name="button3" style="font-family: Tahoma,serif; font-size: 18px" onclick="showInspirationSection('cond_4')" type="button" value="Got it, let's go!" /></td>
 					</tr>
 				</tbody>
@@ -998,8 +1040,10 @@ Statements related to this problem:<br/>
 		   <br />
 
 		<div id="inspiration_based_solutions_blank_lines" style="display:none;">
+		<div id="question_instruction">In this task, we ask you to find solutions to the problem:
+		<font color="#9932cc"><b><span id="task_chosen_problem"></span></b></font></div>
 			<div id="inspiration_box_section_1" style="display:none">
-				<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 40%">
+				<table style="margin-left: 3%; border: 3px solid #679b5c ; width: 80%; font-size: 100%">
 				<tbody>
 				<tr>
 				<td id="inspiration_box_1_text_line" style="display:none"><b>Inspirational texts:</b></td>
@@ -1204,45 +1248,53 @@ Statements related to this problem:<br/>
 		<div id="submit_cond123" style="display:none">
 			Great, you are done! <br />
 
-			If you have some comments on the task, or any ideas for improvement, you can write them in the box bellow:
-			<div class="panel-body" id="feedback"><b>Comments? (Optional)<br />
-			<textarea cols="40" id="textcomments" name="entry.1532607015" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
-
-			 <br />
 			Before submitting the task, we would appreciate it if you could answer these questions:.
 			<br />
 
 			<br />
 			<div class="panel-body" id="helpfulq"><b> Did you find the inspirations given to you helpful in coming up with new ideas? </b><br /> <br/>
-			<input type="radio" id="no" name="entry.275929979" value="no"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			<input type="radio" id="helpful_no" name="entry.275929979" value="no"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-			<input type="radio" id="yes" name="entry.275929979" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			<input type="radio" id="helpful_yes" name="entry.275929979" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 			</br>
 			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   <label for="yes">Yes</label> &nbsp &nbsp
   </div>
   </br></br>
   <div class="panel-body" id="useagainq"><b> If possible, would you use such inspirations when trying to come up with new ideas in the future?  </b><br/> <br/>
-			<input type="radio" id="no" name="entry.449379310" value="no"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			<input type="radio" id="useagain_no" name="entry.449379310" value="no"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-			<input type="radio" id="yes" name="entry.449379310" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			<input type="radio" id="useagain_yes" name="entry.449379310" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 			</br>
 			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
   <label for="yes">Yes</label> &nbsp &nbsp
   
 
   </div>
+  
+ </br> </br>
+    <div class="panel-body" id="Familiarity"><b> Were you familiar with the problem presented to you (and solutions to it) before taking this task? </b><br/> <br/>
+			<input type="radio" id="familiar_no" name="entry.910441527" value="no"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  
+			<input type="radio" id="familiar_yes" name="entry.910441527" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			</br>
+			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+  <label for="yes">Yes</label> &nbsp &nbsp
+  
+
+  </div>
+  
   </br></br>
     <div class="panel-body" id="hardq"><b> How hard did you find this task?  </b><br />
-	<input type="radio" id="veryeasy" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+	<input type="radio" id="hardq_veryeasy" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="fairlyeasy" name="entry.1094765590" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="hardq_fairlyeasy" name="entry.1094765590" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 
-	<input type="radio" id="moderate" name="entry.1094765590" value="moderate">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+	<input type="radio" id="hardq_moderate" name="entry.1094765590" value="moderate">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="fairlyhard" name="entry.1094765590" value="fairly hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="hardq_fairlyhard" name="entry.1094765590" value="fairly hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="veryhard" name="entry.1094765590" value="very hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="hardq_veryhard" name="entry.1094765590" value="very hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 </br> 
 <label for="very easy">very easy</label> &nbsp &nbsp
   <label for="fairlyeasy">fairly easy</label> &nbsp &nbsp
@@ -1255,26 +1307,32 @@ Statements related to this problem:<br/>
   </div>
   </br> </br>
 
- <div class="panel-body" id="hardq"><b> How would you rate the time  you were given to perform the task?  </b><br/><br/>
-<input type="radio" id="lotmore" name="entry.1307459435" value="lot more">
+ <div class="panel-body" id="time_q"><b> How would you rate the time  you were given to perform the task?  </b><br/><br/>
+<input type="radio" id="timeq_lotmore" name="entry.1307459435" value="lot more">
 <label for="lotmore">I needed a lot more time</label>
 </br></br>
-<input type="radio" id="bitmore" name="entry.1307459435" value="bit more">
+<input type="radio" id="timeq_bitmore" name="entry.1307459435" value="bit more">
 <label for="bitmore">I needed a bit more time</label>
 </br></br>
 
-<input type="radio" id="perfect" name="entry.1307459435" value="perfect">
+<input type="radio" id="timeq_perfect" name="entry.1307459435" value="perfect">
 <label for="perfect">I didn't need more time</label>
 </br></br>
 
-<input type="radio" id="bitless" name="entry.1307459435" value="bit less">
+<input type="radio" id="timeq_bitless" name="entry.1307459435" value="bit less">
 <label for="bitless">I had a bit more time than I needed</label>
 </br></br>
 
-<input type="radio" id="lotless" name="entry.1307459435" value="lot less">
+<input type="radio" id="timeq_lotless" name="entry.1307459435" value="lot less">
 <label for="lotless">I had a lot more time than I needed</label>
 </br></br>
  </div>
+ 
+ If you have some comments on the task, or any ideas for improvement, you can write them in the box below:
+			<div class="panel-body" id="feedback"><b>Comments? (Optional)<br />
+			<textarea cols="40" id="textcomments" name="entry.1532607015" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
+
+			 <br />
   
 
   
@@ -1287,7 +1345,7 @@ Statements related to this problem:<br/>
 		<div id="submit_cond4" style="display:none">
 			Great, you are done! <br />
 
-			If you have some comments on the task, or any ideas for improvement, you can write them in the box bellow:
+			If you have some comments on the task, or any ideas for improvement, you can write them in the box below:
 			<div class="panel-body" id="feedback"><b>Comments? (Optional)<br />
 			<textarea cols="40" id="textcomments" name="entry.1532607015" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
 			 <br />
@@ -1421,6 +1479,10 @@ Statements related to this problem:<br/>
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+mark {
+  background-color: red;
+  color: black;
 }
 </style>
 <!-- Close internal style sheet --><!-- External JS references -->
