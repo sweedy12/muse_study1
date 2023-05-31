@@ -13,7 +13,7 @@ var stepsNames= ['pre','instructions','random'];
 var problems_mapping = {'problem_1': 'Dry wet floor', 'problem_2': 'Remind taking medicine',
 	'problem_3': 'Folding laundry', 'problem_4': 'Protect plants'}
 
-var possible_problems = ['problem_4'] // TODO here we need to add the problem that we want in the first part of the experiment
+var possible_problems = ['problem_1', 'problem_3'] // TODO here we need to add the problem that we want in the first part of the experiment
 var possible_versions = ['v_1','v_2','v_3','v_4']
 
 var versions_mapping = {'v_1': ['graph_1'],
@@ -33,10 +33,10 @@ var section = 0;
 var mtimer;
 
 const numOfSecondsSelfPart = 80; // 120
-const numOfSecondsInspirationPart = 420; //480 todo - change this to see
+const numOfSecondsInspirationPart = 300; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 80; // 120
-var totalSecondsWithInspiration = 420; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsWithInspiration = 300; //480 todo - change this to see effect on times, table snapshot
 
 // var curr_graph_url_problem;
 
@@ -172,36 +172,91 @@ window.onload = function() {document.getElementById('submitButton'); }
 	if (chosen_condition != "cond_4")
 	{
 		if (!(document.getElementById('helpful_no').checked || document.getElementById('helpful_yes').checked)) {
+			//alert("helpfulq");
 			all_fine = 1;
 		}
 		if (!(document.getElementById('useagain_no').checked || document.getElementById('useagain_yes').checked)) {
+			//alert("useagainq");
+			all_fine = 1;
+		}
+		let a = document.getElementById('hardq_veryeasy').checked;
+		let b = document.getElementById('hardq_fairlyeasy').checked;
+		let c = document.getElementById('hardq_moderate').checked;
+		let d = document.getElementById('hardq_fairlyhard').checked;
+		let e = document.getElementById('hardq_veryhard').checked;
+		
+		if (!(a||b||c||d||e))
+		{
+			//alert("hardq");
+			all_fine = 1;
+		}
+		a = document.getElementById('timeq_lotless').checked;
+		b = document.getElementById('timeq_lotmore').checked;
+		c = document.getElementById('timeq_perfect').checked;
+		d = document.getElementById('timeq_bitless').checked;
+		e = document.getElementById('timeq_bitmore').checked;
+		
+		if (!(a||b||c||d||e))
+		{	//alert("timeq");
+			all_fine = 1;
+		}
+		
+		a = document.getElementById('famil_veryfamiliar').checked;
+		b = document.getElementById('famil_notatallfamil').checked;
+		c = document.getElementById('famil_neutral').checked;
+		d = document.getElementById('famil_notsofamil').checked;
+		e = document.getElementById('famil_somewhatfamil').checked;
+		if (!(a||b||c||d||e))
+		{
+			//alert ("familq");
 			all_fine = 1;
 		}
 	}
+	else{
+		let a = document.getElementById('famil_veryfamiliar_c4').checked;
+		let b = document.getElementById('famil_notatallfamil_c4').checked;
+		let c = document.getElementById('famil_neutral_c4').checked;
+		let d = document.getElementById('famil_notsofamil_c4').checked;
+		let e = document.getElementById('famil_somewhatfamil_c4').checked;
+		if (!(a||b||c||d||e))
+		{
+			//alert("condition 4,fmail");
+			all_fine = 1;
+		}
+		a = document.getElementById('veryeasy_c4').checked;
+		b = document.getElementById('fairlyeasy_c4').checked;
+		c = document.getElementById('moderate_c4').checked;
+		d = document.getElementById('fairlyhard_c4').checked;
+		e = document.getElementById('veryhard_c4').checked;
+		
+		if (!(a||b||c||d||e))
+		{
+			//alert("condition 4,hardq");
+			all_fine = 1;
+		}
+		a = document.getElementById('lotless_c4').checked;
+		b = document.getElementById('lotmore_c4').checked;
+		c = document.getElementById('perfect_c4').checked;
+		d = document.getElementById('bitless_c4').checked;
+		e = document.getElementById('bitmore_c4').checked;
+		
+		if (!(a||b||c||d||e))
+		{	
+			//alert("condition 4,timeq");
+			all_fine = 1;
+		}
 	
-	let a = document.getElementById('hardq_veryeasy').checked;
-	let b = document.getElementById('hardq_fairlyeasy').checked;
-	let c = document.getElementById('hardq_moderate').checked;
-	let d = document.getElementById('hardq_fairlyhard').checked;
-	let e = document.getElementById('hardq_veryhard').checked;
+		
 	
-	if (!(a||b||c||d||e))
-	{
-		all_fine = 1;
 	}
-	let f = document.getElementById('timeq_lotless').checked;
-	let g = document.getElementById('timeq_lotmore').checked;
-	let h = document.getElementById('timeq_perfect').checked;
-	let i = document.getElementById('timeq_bitless').checked;
-	let k = document.getElementById('timeq_bitmore').checked;
 	
-	if (!(a||b||c||d||e))
-	{
-		all_fine = 1;
-	}
+	
+	
 	
 	if (all_fine == 0){
-	document.getElementById("endOfTaskForm").submit();	
+		//try to put the comment submittance here, or try to recreate it
+	
+		document.getElementById("endOfTaskForm").submit();	
 	}
 	else
 	{
@@ -215,10 +270,11 @@ window.onload = function() {document.getElementById('submitButton'); }
 		document.getElementById('logger').value += log + '\n'
 	}
 	function writeToTableLogger(log){
+		//alert(log);
 		document.getElementById('table_logger').value += log + '\n'
 	}
 	
-	//first page - moving from registration to instructions page 1
+	//first page - moving from registration to instructions page 1/3
 	function clickOnFirstInstructionButton(){
 			logCurrentTime("first instructions section")
 			if (document.getElementById("prolific_id").value === ""){
@@ -233,11 +289,11 @@ window.onload = function() {document.getElementById('submitButton'); }
 			step += 1
 	}
 	function ClickOnFirstReturnButton(){
-	chosen_condition = "cond_3"; //change condition here
+	//chosen_condition = "cond_3"; //change condition here
 	//get condition value from document:
-	if (document.getElementById("condition_chooser").value != ""){
-		chosen_condition = "cond_"+document.getElementById("condition_chooser").value;
-	}
+	//if (document.getElementById("condition_chooser").value != ""){
+		//chosen_condition = "cond_"+document.getElementById("condition_chooser").value;
+	//}
 	
 			logCurrentTime("second instructions section")
 			document.body.scrollTop = 0;
@@ -265,11 +321,11 @@ window.onload = function() {document.getElementById('submitButton'); }
 	
 	//second page - moving to instructions page 2
 	function clickOnInitialNextButton(){
-	chosen_condition = "cond_3"; //change condition here
+	//chosen_condition = "cond_3"; //change condition here
 	//get condition value from document:
-	if (document.getElementById("condition_chooser").value != ""){
-		chosen_condition = "cond_"+document.getElementById("condition_chooser").value;
-	}
+	//if (document.getElementById("condition_chooser").value != ""){
+		//chosen_condition = "cond_"+document.getElementById("condition_chooser").value;
+	//}
 	
 			logCurrentTime("second instructions section")
 			document.body.scrollTop = 0;
@@ -283,7 +339,8 @@ window.onload = function() {document.getElementById('submitButton'); }
 				showSection("instructions_cond2");}
 			if (chosen_condition === 'cond_3'){
 				showSection("instructions_cond3");
-				document.getElementById("instructions_cond123").style.display ="none"}
+				//document.getElementById("instructions_cond123").style.display ="none"}
+				}
 			if (chosen_condition === 'cond_4'){
 			document.getElementById("instructions_cond_123").style.display ="none"
 			document.getElementById("instructions_next_cond_123").style.display ="none"
@@ -400,12 +457,12 @@ function myTimerInspirationAnswer() {
 	const minutesLeft  = Math.floor(totalSecondsWithInspiration / 60);
 	if (minutesLeft  > 0)
 	{
-    document.getElementById("timer_inspiration").innerHTML = 'you have ' + minutesLeft + ' minutes left';
+    document.getElementById("timer_inspiration").innerHTML = '<span style = "font-size:30px"> &#8987; You have <font color="red">' + minutesLeft + ' </font> minutes left &#8987; </span>';
 		
 	}
 	else
 	{
-		document.getElementById("timer_inspiration").innerHTML = 'you have less than a minute left';
+		document.getElementById("timer_inspiration").innerHTML = '<span style = "font-size:30px"> &#8987; You have <font color="red"> less than a minute left </font> &#8987; </font>';
 
 		}
 	totalSecondsWithInspiration--;
@@ -434,6 +491,7 @@ function myTimerInspirationAnswer() {
 	<div class="col-xs-12 col-md-12">
 		<textarea cols="40" id="table_logger" name="entry.953486756" rows="5" style="display:none">task table logs:</textarea>
 	</div>
+	
 	<div class="col-xs-12 col-md-12">
 		<textarea cols="40" id="prolific_exp_num" name="entry.1687743065" rows="5" style="display:none">00000</textarea>
 	</div>
@@ -455,7 +513,7 @@ function myTimerInspirationAnswer() {
 	By clicking on the "Continue to the experiment" button you are agreeing to the terms in 
 	<a href = "MuseConsent.pdf" target="_blank"> the consent form </a><br/> <br>
 	
-<b> (Pilot : enter condition 1-4 here) </b><textarea cols="20" id="condition_chooser" name="conditioner" rows="1.5"></textarea> <br><br><br>
+
 
 <input name="buttonRegistration" onclick="clickOnFirstInstructionButton()" type="button" style="font-family: Tahoma,serif; font-size: 18px" value="Continue to the experiment instructions!" /></div>
 
@@ -467,7 +525,7 @@ function myTimerInspirationAnswer() {
 
 <p align="justify">
 
-	<div id="banner_instruction_1" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 1</div>
+	<div id="banner_instruction_1" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 1/3</div>
 	<br/>
 	<br/>
 
@@ -500,7 +558,7 @@ function myTimerInspirationAnswer() {
 <br />
 	<p align="justify">
 
-		<div id="banner_instruction_2" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 2</div>
+		<div id="banner_instruction_2" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 2/3</div>
 		<br/>
 		<br/>
 
@@ -522,12 +580,12 @@ function myTimerInspirationAnswer() {
 		<tbody>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="40%">
-		Solution 1:<br/><textarea style="color: royalblue" width="100%" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br /> </td>
+		<font color="#006400"><b>Solution 1</b></font>:<br/><textarea style="color: royalblue" width="100%" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br /> </td>
 		<td colspan="1" width="40%">
-		Solution 2:<br/><textarea style="color: royalblue" width="100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
+		<font color="#006400">Solution 2</font>:<br/><textarea style="color: royalblue" width="100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
 		</td>
 		<td colspan="1" width="20%">
-		Solution 3:<br/><textarea style="color: royalblue" width="40%" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
+		<font color="#006400">Solution 3</font>:<br/><textarea style="color: royalblue" width="40%" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
 		<br />
 		</td>
 		<td colspan="1" width="40%">
@@ -558,7 +616,7 @@ function myTimerInspirationAnswer() {
 <br />
 	<p align="justify">
 
-		<div id="banner_instruction_2" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 2</div>
+		<div id="banner_instruction_2" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 2/3</div>
 		<br/>
 		<br/>
 
@@ -700,7 +758,7 @@ Statements related to this problem:<br/>
 		During this task, you will be asked to fill in a table with
 		(1) your <font color="#006400"><b>original solutions</b></font>,
 		(2) an <b>explanation of what you were inspired by</b>, and
-		(3) the <font color="#00008b"><b>inspiration source id (the number in </b></font>  <font color="red"><b>red).</b></font>
+		(3) the inspiration source id (the number in <font color="red"><b> red </b></font>).
 		(Inspirations have id numbers assigned to them).
 		In case you didn't use an inspiration source for your solution, write <b> ME </b> in the inspiration id column .
 		<br/>
@@ -721,7 +779,7 @@ Statements related to this problem:<br/>
 		<tbody>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="40%">
-		Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
+		Solution 1 </b>:<textarea style="color: royalblue;width:100%" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
 		</td>
 		<td colspan="2" width="40%">
 		What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_1" name="example_insp_1" rows="3">A dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
@@ -729,7 +787,7 @@ Statements related to this problem:<br/>
 		</tr>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="40%">
-		Solution 2:<br/><textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
+		Solution 2</b>:<textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">A hair spray that has drying qualities</textarea><br />
 		</td>
 		<td colspan="2" width="40%">
 		What inspired you 2:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
@@ -737,7 +795,7 @@ Statements related to this problem:<br/>
 		</tr>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="20%">
-		Solution 3:<br/><textarea style="color: royalblue;width:100%" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
+		Solution 3</b></font>:<textarea style="color: royalblue;width:100%" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
 		<br />
 		</td>
 		<td colspan="2" width="40%">
@@ -754,13 +812,13 @@ Statements related to this problem:<br/>
 		<tbody>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="40%">
-		Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_1" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
+		Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_1" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
 		</td>
 		<td colspan="2" width="40%">
-		What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_1" name="example_insp_1" rows="3">A dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
+		What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_1" name="example_insp_1" rows="3">Looking on a heating blanket made me think about using the same mechanism to heat the head. This may result with the hair drying faster.</textarea><br />
 		</td>
 		<td colspan="1" width="20%">
-		Inspiration id 1:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_1" name="example_insnp_num_1" rows="3">1</textarea><br />
+		Inspiration id 1:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_1" name="example_insnp_num_1" rows="3">ME</textarea><br />
 		</td>
 		</tr>
 		<tr style="border:2px solid #aaa;">
@@ -776,15 +834,17 @@ Statements related to this problem:<br/>
 		</tr>
 		<tr style="border:2px solid #aaa;">
 		<td colspan="1" width="20%">
-		Solution 3:<br/><textarea style="color: royalblue;width:100%" id="example_3" name="example_1" rows="3">A heating hat: a hat with a heating mechanism that you put on top of your head.</textarea><br />
+		Solution 3:<br/><textarea style="color: royalblue;width:100%" id="example_3" name="example_1" rows="3">Hair drying machine: a machine that spins your hair until it is dry
+</textarea><br />
 		<br />
 		</td>
 		<td colspan="2" width="40%">
-		What inspired you 3:<br/><textarea style="color: royalblue;width:100%" id="example_insp_3" name="example_insp_3" rows="3">Looking on a heating blanket made me think about using the same mechanism to heat the head. This may result with the hair drying faster.</textarea><br />
+		What inspired you 3:<br/><textarea style="color: royalblue;width:100%" id="example_insp_3" name="example_insp_3" rows="3">A dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair
+</textarea><br />
 		<br />
 		</td>
 		<td colspan="2" width="40%">
-		Inspiration id 3:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_3" name="example_insnp_num_3" rows="3">ME</textarea><br />
+		Inspiration id 3:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_3" name="example_insnp_num_3" rows="3">1</textarea><br />
 		<br />
 		</td>
 		</tr>
@@ -806,10 +866,11 @@ Statements related to this problem:<br/>
 <br />
 <p align="justify">
 
-	<div id="banner_instruction_3" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 3</div>
+	<div id="banner_instruction_3" style="background-color:paleturquoise; margin-top: -4%" width="100%">Instructions page 3/3</div>
 	<br/>
 	<br/>
-		Overall, <b>total amount of time required to complete the task is around <**15**> minutes.</b>
+		Overall, <b>total amount of time required to complete the task is around <**15**> minutes.</b> </br>
+		After clicking on the "Continue to the experiment!" button <b> you will not be able to review the instructions again. </b></br>
 		Please do not start the task if you do not have the time.
 		<br/>
 		<br/>
@@ -881,16 +942,13 @@ Statements related to this problem:<br/>
 								<tbody>
 								<tr style="border:2px solid #aaa;">
 								<td colspan="1" width="40%">
-								Solution 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_sol_links" name="example_sol_links" rows="3">A hair spray that has drying qualities</textarea><br />
-								<br />
+								Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">Leaf blower for hair</textarea><br />
 								</td>
-								<td colspan="1" width="40%">
-								What inspired you 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_explained" name="example_insp_links" rows="3">I was inspired by a nail polish drying spray: you spray it on your nails and the nail polish gets dry faster.</textarea><br />
-								<br />
+								<td colspan="2" width="40%">
+								What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I saw a text about leaf blowers. the blower circulates the air, similar to a natural wind which dries the hair</textarea><br />
 								</td>
-								<td colspan="1" width="40%">
-								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_number" name="example_insp_links" rows="3">2</textarea><br />
-								<br />
+								<td colspan="2" width="20%">
+								Inspiration id 1:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">8,5</textarea><br />
 								</td>
 								</tr>
 								</tbody>
@@ -926,16 +984,13 @@ Statements related to this problem:<br/>
 								<tbody>
 								<tr style="border:2px solid #aaa;">
 								<td colspan="1" width="40%">
-								Solution 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_sol_texts" name="example_sol_texts" rows="3">leaf blower</textarea><br />
-								<br />
+								Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">Leaf blower for hair</textarea><br />
 								</td>
-								<td colspan="1" width="40%">
-								What inspired you 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_texts" name="example_insp_texts" rows="3">I saw a text about leaf blowers. the blower circulates the air, similar to a natural wind which dries the hair</textarea><br />
-								<br />
+								<td colspan="2" width="40%">
+								What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I saw a text about leaf blowers. the blower circulates the air, similar to a natural wind which dries the hair</textarea><br />
 								</td>
-								<td colspan="1" width="40%">
-								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_texts_number" name="example_insp_links" rows="3">11, 20</textarea><br />
-								<br />
+								<td colspan="2" width="20%">
+								Inspiration id 1:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">8,5</textarea><br />
 								</td>
 								</tr>
 								</tbody>
@@ -969,16 +1024,13 @@ Statements related to this problem:<br/>
 								<tbody>
 								<tr style="border:2px solid #aaa;">
 								<td colspan="1" width="40%">
-								Solution 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_sol_engine" name="example_sol_texts" rows="3">Hair drying machine: a machine that spins your hair until it is dry</textarea><br />
-								<br />
+								Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_2" name="example_1" rows="3">Leaf blower for hair</textarea><br />
 								</td>
-								<td colspan="1" width="40%">
-								What inspired you 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_engine" name="example_insp_texts" rows="3">A clothes dryer spins the clothes to dry them. I thought that maybe a similar idea can work for hair</textarea><br />
-								<br />
+								<td colspan="2" width="40%">
+								What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_2" name="example_insp_2" rows="3">I saw a text about leaf blowers. the blower circulates the air, similar to a natural wind which dries the hair</textarea><br />
 								</td>
-								<td colspan="1" width="40%">
-								Inspiration source id 1:<br /><textarea style="color: royalblue" readonly cols="40" id="example_insp_engine_number" name="example_insp_links" rows="3">1</textarea><br />
-								<br />
+								<td colspan="2" width="20%">
+								Inspiration id 1</font>:<br/><textarea style="color: royalblue;width:50%; margin-left:10" id="example_insnp_num_2" name="example_insnp_num_2" rows="3">8,5</textarea><br />
 								</td>
 								</tr>
 								</tbody>
@@ -1009,16 +1061,15 @@ Statements related to this problem:<br/>
 
 							<div id="example_solutions_nothing" style="display:block">
 								<table style="border: 1px solid black">
-								<tbody>
-								<tr style="border:2px solid #aaa;">
-								<td colspan="1" width="40%">
-								Solution 1:<br /><textarea style="color: royalblue" readonly cols="60" id="example_solution_nothing" name="example_solution_nothing" rows="3">a special hair lotion with a chemical compound that would accelerate the drying process of your hair</textarea><br />
-								<br />
-								</td>
-								<td colspan="1" width="40%">
-								What inspired you 1:<br /><textarea style="color: royalblue" readonly cols="60" id="example_insp_nothing" name="example_insp_nothing" rows="3">In order to dry nail polish, you can use a fast dry nail polish and spread it on top of your nails. This made me think of some lotion that you can apply to your hair to make it dry faster.</textarea><br />
-								<br />
-								</tr>
+		<tbody>
+		<tr style="border:2px solid #aaa;">
+		<td colspan="1" width="40%">
+		Solution 1:<br/><textarea style="color: royalblue;width:100%" id="example_1" name="example_1" rows="3">Leaf blower for hair</textarea><br />
+		</td>
+		<td colspan="2" width="40%">
+		What inspired you 1:<br/><textarea style="color: royalblue;width:100%" id="example_insp_1" name="example_insp_1" rows="3">I saw a text about leaf blowers. the blower circulates the air, similar to a natural wind which dries the hair.</textarea><br />
+		</td>
+		</tr>
 								</tbody>
 								</table>
 							</div>
@@ -1257,7 +1308,7 @@ Statements related to this problem:<br/>
   
 			<input type="radio" id="helpful_yes" name="entry.275929979" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 			</br>
-			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   <label for="yes">Yes</label> &nbsp &nbsp
   </div>
   </br></br>
@@ -1266,27 +1317,36 @@ Statements related to this problem:<br/>
   
 			<input type="radio" id="useagain_yes" name="entry.449379310" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 			</br>
-			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   <label for="yes">Yes</label> &nbsp &nbsp
   
 
   </div>
   
  </br> </br>
-    <div class="panel-body" id="Familiarity"><b> Were you familiar with the problem presented to you (and solutions to it) before taking this task? </b><br/> <br/>
-			<input type="radio" id="familiar_no" name="entry.910441527" value="no"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    <div class="panel-body" id="Familiarity"><b> Before starting this task, how familiar were you with existing solutions to the problem presented to you? </b><br/> <br/>
+			&nbsp &nbsp &nbsp <input type="radio" id="famil_veryfamiliar" name="entry.910441527" value="very familiar"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-			<input type="radio" id="familiar_yes" name="entry.910441527" value="yes"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-			</br>
-			<label for="no">No</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-  <label for="yes">Yes</label> &nbsp &nbsp
+		&nbsp <input type="radio" id="famil_somewhatfamil" name="entry.910441527" value="somewhat familiar"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+			<input type="radio" id="famil_neutral" name="entry.910441527" value="neutral">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		  
+		<input type="radio" id="famil_notsofamil" name="entry.910441527" value="notso familiar"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		  
+		<input type="radio" id="famil_notatallfamil" name="entry.910441527" value="notatall familiar"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		</br> 
+		<label for="very familiar">Very familiar</label> &nbsp &nbsp &nbsp
+		  <label for="somewhat familiar">Somewhat familiar</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		<label for="neutral">Neutral</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		<label for="notso familiar">Not so familiar</label> &nbsp &nbsp &nbsp &nbsp &nbsp
+		  <label for="notatall familiar">Not familiar at all</label> &nbsp &nbsp &nbsp &nbsp
   
 
   </div>
   
   </br></br>
     <div class="panel-body" id="hardq"><b> How hard did you find this task?  </b><br />
-	<input type="radio" id="hardq_veryeasy" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+	&nbsp &nbsp<input type="radio" id="hardq_veryeasy" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
 <input type="radio" id="hardq_fairlyeasy" name="entry.1094765590" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 
@@ -1296,11 +1356,11 @@ Statements related to this problem:<br/>
   
 <input type="radio" id="hardq_veryhard" name="entry.1094765590" value="very hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 </br> 
-<label for="very easy">very easy</label> &nbsp &nbsp
-  <label for="fairlyeasy">fairly easy</label> &nbsp &nbsp
-<label for="moderate">moderate</label> &nbsp &nbsp
-<label for="fairlyhard">fairly hard</label> &nbsp &nbsp &nbsp &nbsp &nbsp
-  <label for="veryhard">very hard</label> &nbsp &nbsp &nbsp &nbsp
+<label for="very easy">Very easy</label> &nbsp &nbsp
+  <label for="fairlyeasy">Fairly easy</label> &nbsp &nbsp &nbsp
+<label for="moderate">Moderate</label> &nbsp &nbsp &nbsp &nbsp
+<label for="fairlyhard">Fairly hard</label> &nbsp &nbsp &nbsp
+  <label for="veryhard">Very hard</label> &nbsp &nbsp &nbsp &nbsp
 
 
   </br></br>
@@ -1328,15 +1388,13 @@ Statements related to this problem:<br/>
 </br></br>
  </div>
  
- If you have some comments on the task, or any ideas for improvement, you can write them in the box below:
-			<div class="panel-body" id="feedback"><b>Comments? (Optional)<br />
-			<textarea cols="40" id="textcomments" name="entry.1532607015" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
-
-			 <br />
-  
-
-  
 			
+ If you have some comments on the task, or any ideas for improvement, you can write them in the box below:
+
+			 <div class="panel-body" id="feedback_q"><b>Comments? (Optional)<br />
+			<textarea cols="40" id="textcomments" name="entry.572613020" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
+			 <br />
+
 			<input name="buttonSubmit" style="font-family: Tahoma,serif; font-size: 18px" onclick = "endOfSurveyubmit()" value="submit task" type="button"></button>
 		</div>
 		
@@ -1344,56 +1402,78 @@ Statements related to this problem:<br/>
 		
 		<div id="submit_cond4" style="display:none">
 			Great, you are done! <br />
-
-			If you have some comments on the task, or any ideas for improvement, you can write them in the box below:
-			<div class="panel-body" id="feedback"><b>Comments? (Optional)<br />
-			<textarea cols="40" id="textcomments" name="entry.1532607015" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
-			 <br />
 			Before submitting the task, we would appreciate it if you could answer these questions:.
 			<br />
   </br></br>
-    <div class="panel-body" id="hardq"><b> How hard did you find this task?  </b><br /><br/>
-	<input type="radio" id="veryeasy" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  <div class="panel-body" id="Familiarity_cond4"><b> Before starting this task, how familiar were you with existing solutions to the problem presented to you? </b><br/> <br/>
+			&nbsp &nbsp &nbsp <input type="radio" id="famil_veryfamiliar_c4" name="entry.910441527" value="very familiar"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="fairlyeasy" name="entry.1094765590" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		&nbsp <input type="radio" id="famil_somewhatfamil_c4" name="entry.910441527" value="somewhat familiar"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 
-	<input type="radio" id="moderate" name="entry.1094765590" value="moderate">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+			<input type="radio" id="famil_neutral_c4" name="entry.910441527" value="neutral">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		  
+		<input type="radio" id="famil_notsofamil_c4" name="entry.910441527" value="notso familiar"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		  
+		<input type="radio" id="famil_notatallfamil_c4" name="entry.910441527" value="notatall familiar"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		</br> 
+		<label for="very familiar">Very familiar</label> &nbsp &nbsp &nbsp
+		  <label for="somewhat familiar">Somewhat familiar</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		<label for="neutral">Neutral</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+		<label for="notso familiar">Not so familiar</label> &nbsp &nbsp &nbsp &nbsp &nbsp
+		  <label for="notatall familiar">Not familiar at all</label> &nbsp &nbsp &nbsp &nbsp
+  
+
+  </div>
+  
+  </br>
+  
+    <div class="panel-body" id="hardq_c4"><b> How hard did you find this task?  </b><br /><br/>
+	<input type="radio" id="veryeasy_c4" name="entry.1094765590" value="very easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="fairlyhard" name="entry.1094765590" value="fairly hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="fairlyeasy_c4" name="entry.1094765590" value="fairly easy"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+	<input type="radio" id="moderate_c4" name="entry.1094765590" value="moderate">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
   
-<input type="radio" id="veryhard" name="entry.1094765590" value="very hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="fairlyhard_c4" name="entry.1094765590" value="fairly hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  
+<input type="radio" id="veryhard_c4" name="entry.1094765590" value="very hard"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 </br> 
-<label for="very easy">very easy</label> &nbsp &nbsp
-  <label for="fairlyeasy">fairly easy</label> &nbsp &nbsp
-<label for="moderate">moderate</label> &nbsp &nbsp
-<label for="fairlyhard">fairly hard</label> &nbsp &nbsp &nbsp &nbsp &nbsp
-  <label for="veryhard">very hard</label> &nbsp &nbsp &nbsp &nbsp
+<label for="very easy">Very easy</label> &nbsp &nbsp
+  <label for="fairlyeasy">Fairly easy</label> &nbsp &nbsp
+<label for="moderate">Moderate</label> &nbsp &nbsp
+<label for="fairlyhard">Fairly hard</label> &nbsp &nbsp &nbsp &nbsp &nbsp
+  <label for="veryhard">Very hard</label> &nbsp &nbsp &nbsp &nbsp
 </div>
 
 </br> </br>
 
- <div class="panel-body" id="hardq"><b> How would you rate the time  you were given to perform the task?  </b><br />
-<input type="radio" id="lotmore" name="entry.1307459435" value="lot more">
+ <div class="panel-body" id="timeq_c4"><b> How would you rate the time  you were given to perform the task?  </b><br />
+<input type="radio" id="lotmore_c4" name="entry.1307459435" value="lot more">
 <label for="lotmore">I needed a lot more time</label>
 </br></br>
-<input type="radio" id="bitmore" name="entry.1307459435" value="bit more">
+<input type="radio" id="bitmore_c4" name="entry.1307459435" value="bit more">
 <label for="bitmore">I needed a bit more time</label>
 </br></br>
 
-<input type="radio" id="perfect" name="entry.1307459435" value="perfect">
+<input type="radio" id="perfect_c4" name="entry.1307459435" value="perfect">
 <label for="perfect">I didn't need more time</label>
 </br></br>
 
-<input type="radio" id="bitless" name="entry.1307459435" value="bit less">
+<input type="radio" id="bitless_c4" name="entry.1307459435" value="bit less">
 <label for="bitless">I had a bit more time than I needed</label>
 </br></br>
 
-<input type="radio" id="lotless" name="entry.1307459435" value="lot less">
+<input type="radio" id="lotless_c4" name="entry.1307459435" value="lot less">
 <label for="lotless">I had a lot more time than I needed</label>
 </br></br>
  </div>
 
-  </br></br>
+  </br>
+  If you have some comments on the task, or any ideas for improvement, you can write them in the box below:
+			<div class="panel-body" id="feedback_q_c4"><b>Comments? (Optional)<br />
+			<textarea cols="40" id="textcomments_c4" name="entry.2124812402" rows="5"> </textarea> <input id="hidden_html" name="saved_html_mechanism" type="hidden" value="" /> <input id="hidden_html2" name="saved_html_purpose" type="hidden" value="" /></b></div>
+			 <br />
+  </br>
 
   
 			

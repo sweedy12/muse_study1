@@ -1,0 +1,34 @@
+Labmates notes:
+
+
+General:
+1. original -> creative (change phrasing of "not the common ways to solve the problem" to "solutions you have never heard of" Done
+2. Change "inspiration source id (the  number in red)" to be all in red Done
+3. Change timer: time in red, enlarge font, add clock emoji, make "you"->"You" Done
+4. Fix table issues - the example in last page should change from 11,20 to 2,7 or something. The column name should also change so everything is the same. Done
+
+5. Table example: since "original solutions" is marked in green, we need to change the column "solution 1" (and 2,3) to be in green. Done, but do the same for other columns with their respected color.  Also mix the examples/ Done
+
+
+
+6. Also in table example: Change the order of the inspirations so it's not confusing Done
+7. Change to familiarity question in the survey to be asked about solutions only, and have 5 grades
+8. Add pages count (2/3) Done
+9. Add clarification about not going back to instructions after mid page Done
+10. Check if all survey questions are met before submitting Done
+11. Check submittance (Submitting the from does not submit Comments! Do it manually)
+
+12. Return to old phrasing (After "original")
+13. Uncolor the table
+14. Remove red (only mark the word "red" in red)
+15. Capital letters!!!!!!!
+
+
+
+
+
+Condition 1:
+
+Condition 2:
+
+Condition 3:
