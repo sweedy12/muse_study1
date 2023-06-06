@@ -13,7 +13,7 @@ document.documentElement.scrollTop = 0;
 
 addEventListener("DOMContentLoaded", () => {
     // Access the imported function after the script has loaded
-    get_from_database("problem1", "1").then((value) => {
+    firebase.get_from_database("problem1", "1").then((value) => {
       alert(value);
     });
   })
