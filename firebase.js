@@ -1,4 +1,4 @@
-<script type="module">
+
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
   import {getDatabase, ref, set, onValue, get, child} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
@@ -24,5 +24,3 @@
    get(child(dref, problem)).then((snapshot)=>{
 	alert(snapshot.val().cond1);
    });
-
-</script>
