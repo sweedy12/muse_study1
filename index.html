@@ -4,8 +4,10 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-databae.js"></script>
 
-
-<script src="./firbase.js" type="module"> </script>
+<script type="module">
+  import * as myFirebase from "./firebase.js";
+  window.myFirebase = myFirebase;
+</script>
 <script language="Javascript">
 
 document.body.scrollTop = 0;
@@ -13,7 +15,7 @@ document.documentElement.scrollTop = 0;
 
 addEventListener("DOMContentLoaded", () => {
     // Access the imported function after the script has loaded
-    firebase.get_from_database("problem1", "1").then((value) => {
+    myFirebase.get_from_database("problem1", "1").then((value) => {
       alert(value);
     });
   })
