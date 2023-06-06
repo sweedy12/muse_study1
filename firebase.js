@@ -19,12 +19,10 @@
   // Initialize Firebase
   const firebase = initializeApp(firebaseConfig);
    var database = getDatabase();
-   export function get_from_database(problem, cond){
+   function get_from_database(problem, cond){
    const dref = ref(database);
    get(child(dref, problem)).then((snapshot)=>{
 	alert(snapshot.val().cond1);
    });
-   }
-   
-   
+
 </script>
