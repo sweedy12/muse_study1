@@ -5,15 +5,15 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-databae.js"></script>
 
 
+<script src="/inter.js"> </script>
+<script language="Javascript">
 
-<script language="Javascript" type="module">
 
-
-import {get_from_database} from "./firbase.js"
+import {get_from_database} from "./firbase.js";
 document.body.scrollTop = 0;
 document.documentElement.scrollTop = 0;
 
-alert(get_from_db("problem1","1"));
+alert(window.get_from_db("problem1","1"));
 var condition_num_to_type = {'cond_1': 'purp_only.html', 'cond_2': 'purp_mech.html', 'cond_3': 'purp_mech_gpt.html'}
 var new_to_old_cond_mapping = {'graph_1': 'cond_1', 'graph_2': 'cond_2', 'graph_3': 'cond_3', 'graph_4': 'cond_4'}
 
@@ -45,7 +45,6 @@ const numOfSecondsInspirationPart = 30; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 80; // 120
 var totalSecondsWithInspiration = 30; //480 todo - change this to see effect on times, table snapshot
-
 // var curr_graph_url_problem;
 
 	function showInspirationBlankLinesAccordingToPhase(cond){
