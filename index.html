@@ -1,11 +1,19 @@
 <!-- For help on using this template, see the blog post: https://blog.mturk.com/editing-the-survey-link-project-template-in-the-ui-7c75285105fb#.py7towsdx --><!-- HIT template: SurveyLink-v3.0 --><!-- The following snippet enables the 'responsive' behavior on smaller screens -->
 <meta content="width=device-width,initial-scale=1" name="viewport" />
 <section class="container" id="SurveyLink">
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-databae.js"></script>
 
-<script language="Javascript">
+
+
+<script language="Javascript" type="module">
+
+
+import {get_from_database} from "./firbase.js"
 document.body.scrollTop = 0;
 document.documentElement.scrollTop = 0;
 
+alert(get_from_db("problem1","1"));
 var condition_num_to_type = {'cond_1': 'purp_only.html', 'cond_2': 'purp_mech.html', 'cond_3': 'purp_mech_gpt.html'}
 var new_to_old_cond_mapping = {'graph_1': 'cond_1', 'graph_2': 'cond_2', 'graph_3': 'cond_3', 'graph_4': 'cond_4'}
 
@@ -1047,8 +1055,7 @@ Statements related to this problem:<br/>
 						<p><font face="Times New Roman"><input id="stimulus4" name="stimulus4" type="hidden" value="" /></font></p>
 							<br />
 							<br />
-							<font color="#dc143c"><b>Do not</b></font> use any search engine or knowledge source.
-							<br />
+							<font color="#dc143c"><b>Do not</b></font> use any search engine or external knowledge source (you can use a dictionary).<br/>
 							<br />
 							<br />
 								Fill the the table with as many ideas as you come up with. You do not have to fill the entire table.
