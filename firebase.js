@@ -1,5 +1,5 @@
 
-  // Import the functions you need from the SDKs you need
+ // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
   import {getDatabase, ref, set, onValue, get, child} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
   // TODO: Add SDKs for Firebase products that you want to use
@@ -19,7 +19,7 @@
   // Initialize Firebase
   const firebase = initializeApp(firebaseConfig);
    var database = getDatabase();
-   function get_from_database(problem, cond){
+    function get_from_database(problem, cond){
    const dref = ref(database);
    get(child(dref, problem)).then((snapshot)=>{
 	alert(snapshot.val().cond1);
