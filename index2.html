@@ -76,156 +76,85 @@ var versions_mapping = {'v_1': ['graph_1'],
   }
 }
   var condition_threshold = 50;
-  
-  
   function get_possible_conditions_and_problems() {
-	  return new Promise(function(resolve, reject) {
-		var problem_map = new Map();
-		var problem_condition_to_number = new Map();
-		var all_possible_problems = [];
-		var problem_arr = [];
+  return new Promise(function(resolve, reject) {
+    var problem_map = new Map();
+    var all_possible_problems = [];
+    var problem_arr = [];
 
-		fetchData()
-		  .then(function(result) {
-			var problemSections = result.split(" ");
-			var mapping = {};
-			var problemName = problemSections[0].replace(":", "");
-			mapping[problemName] = [
-			  problemSections[1],
-			  problemSections[2],
-			  problemSections[3],
-			  problemSections[4]
-			];
-			var problemName2 = problemSections[5].replace(":", "");
-			mapping[problemName2] = [
-			  problemSections[6],
-			  problemSections[7],
-			  problemSections[8],
-			  problemSections[9]
-			];
-			var was_problem1_found = 0;
-			var was_problem2_found = 0;
-			var problem1_arr = [];
-			var problem2_arr = [];
+    fetchData()
+      .then(function(result) {
+        var problemSections = result.split(" ");
+        var mapping = {};
+        var problemName = problemSections[0].replace(":", "");
+        mapping[problemName] = [
+          problemSections[1],
+          problemSections[2],
+          problemSections[3],
+          problemSections[4]
+        ];
+        var problemName2 = problemSections[5].replace(":", "");
+        mapping[problemName2] = [
+          problemSections[6],
+          problemSections[7],
+          problemSections[8],
+          problemSections[9]
+        ];
+        var was_problem1_found = 0;
+        var was_problem2_found = 0;
+        var problem1_arr = [];
+        var problem2_arr = [];
 
-			for (let i = 0; i < 4; i++) {
-			  if (mapping["problem1"][i] < condition_threshold) {
-				if (was_problem1_found == 0) {
-				  was_problem1_found = 1;
-				  all_possible_problems.push("problem1");
-				}
-				problem1_arr.push(i + 1);
-				
-			  }
-			  var problem_cond_str = "problem1_cond"+ (i+1);
-				problem_condition_to_number[problem_cond_str] = mapping["problem1"][i];
-			  if (mapping["problem2"][i] < condition_threshold) {
-				if (was_problem2_found == 0) {
-				  was_problem2_found = 1;
-				  all_possible_problems.push("problem2");
-				}
-				problem2_arr.push(i + 1);
-				
-			  }
-			  var problem_cond_str = "problem2_cond"+ (i+1);
-				problem_condition_to_number[problem_cond_str] = mapping["problem2"][i];
-			}
-			
+        for (let i = 0; i < 4; i++) {
+          if (mapping["problem1"][i] < condition_threshold) {
+            if (was_problem1_found == 0) {
+              was_problem1_found = 1;
+              all_possible_problems.push("problem1");
+            }
+            problem1_arr.push(i + 1);
+          }
+          if (mapping["problem2"][i] < condition_threshold) {
+            if (was_problem2_found == 0) {
+              was_problem2_found = 1;
+              all_possible_problems.push("problem2");
+            }
+            problem2_arr.push(i + 1);
+          }
+        }
 
-			if (problem1_arr.length > 0) {
-			  problem_map["problem1"] = problem1_arr;
-			}
-			if (problem2_arr.length > 0) {
-			  problem_map["problem2"] = problem2_arr;
-			}
-			
-			//alert(problem_condition_to_number["problem1_cond1"]);
-			//alert(problem_condition_to_number["problem1_cond2"]);
-			//alert(problem_condition_to_number["problem1_cond3"]);
-			//alert(problem_condition_to_number["problem1_cond4"]);
-			//alert(problem_condition_to_number["problem2_cond1"]);
-			//alert(problem_condition_to_number["problem2_cond2"]);
-			//alert(problem_condition_to_number["problem2_cond3"]);
-			//alert(problem_condition_to_number["problem2_cond4"]);
-			resolve([all_possible_problems, problem_map, problem_condition_to_number]);
-		  })
-		  .catch(function(error) {
-			reject(error);
-		  });
-	  });
-	}
+        if (problem1_arr.length > 0) {
+          problem_map["problem1"] = problem1_arr;
+        }
+        if (problem2_arr.length > 0) {
+          problem_map["problem2"] = problem2_arr;
+        }
+
+        resolve([all_possible_problems, problem_map]);
+      })
+      .catch(function(error) {
+        reject(error);
+      });
+  });
+}
 
 async function sample_condition_problem(){
 		let values = await get_possible_conditions_and_problems();
-
-		var all_possible_problems = values[0];
-		var problem_map = values[1];
-		var problem_condition_to_number = values[2];
-		var random_number_problem = Math.floor(Math.random() * all_possible_problems.length);
-		chosen_problem = all_possible_problems[random_number_problem];
+		var all_possible_problems = values[0]
+		var problem_map = values[1]
+		var random_number_problem = Math.floor(Math.random() * all_possible_problems.length)
+		chosen_problem = all_possible_problems[random_number_problem]
 		var random_number_condition_version = Math.floor(Math.random() * problem_map[chosen_problem].length);
 
 		var chosen_cond_number = problem_map[chosen_problem][random_number_condition_version];
 		
 		chosen_condition = number_to_cond[chosen_cond_number];
-		alert(chosen_problem);
+		
 		alert(chosen_condition);
-		var problem_cond1_str = chosen_problem + "_cond1";
-		var problem_cond2_str = chosen_problem + "_cond2";
-		var problem_cond3_str = chosen_problem + "_cond3";
-		var problem_cond4_str = chosen_problem + "_cond4";
-		var cond1_count = parseInt(problem_condition_to_number[problem_cond1_str]);
-		var cond2_count = parseInt(problem_condition_to_number[problem_cond2_str]);
-		var cond3_count = parseInt(problem_condition_to_number[problem_cond3_str]);
-		var cond4_count = parseInt(problem_condition_to_number[problem_cond4_str]);
-		
-		
-		//alert(chosen_condition);
-		//alert(chosen_problem);
+		alert(chosen_problem);
 		writeToLogger("Chosen problem: " + chosen_problem + '\n');
 
 		writeToLogger("Chosen condition: " + chosen_condition + '\n');
-		if (chosen_condition == "cond_1"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count + 1,
-			cond2: cond2_count,
-			cond3: cond3_count,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_2"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count + 1,
-			cond3: cond3_count,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_3"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count,
-			cond3: cond3_count+1,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_4"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count,
-			cond3: cond3_count,
-			cond4: cond4_count + 1
-			
-			
-		  });}
-		  
-		
 		return [chosen_condition, problems_mapping[chosen_problem]];
-		
-		
 		
 		
 
@@ -300,7 +229,7 @@ var totalSecondsWithInspiration = 30; //480 todo - change this to see effect on 
 		document.getElementById("cond_3").style.display ="none"
 		document.getElementById("cond_1").style.display ="none"
 		document.getElementById("cond_4").style.display ="none"
-		//alert(chosen_condition);
+		alert(chosen_condition);
 		// show the correct section
 		document.getElementById(chosen_condition).style.display ="block"
 		console.log(chosen_condition)
@@ -349,7 +278,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 			//let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 			//let dateTime = date + ' ' + time;
 			//getting the inforformation from the table entries
-			//alert(chosen_condition);
+			alert(chosen_condition);
 			let str = "";
 			for (let i=0; i < 10; i++){ //going over all 10 table rows
 				let str_idx = (i+1).toString()
@@ -397,7 +326,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 	function endOfSurveyubmit(){
 	//alert("called the function");
 	var all_fine = 0;
-	//alert(chosen_condition);
+	alert(chosen_condition);
 	if (chosen_condition != "cond_4")
 	{
 		if (!(document.getElementById('helpful_no').checked || document.getElementById('helpful_yes').checked)) {
@@ -530,7 +459,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 		    phaseName= stepsNames[step-1]
 		    document.getElementById("pre").style.display ="block";
 			document.getElementById("instructions").style.display ="none";
-			//alert(chosen_condition);
+			alert(chosen_condition);
 			if (chosen_condition === 'cond_1') {
 				document.getElementById("instructions_cond1").style.display ="none";}
 			if (chosen_condition === 'cond_2'){
@@ -563,7 +492,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 		    phaseName= stepsNames[step+1]
 		    document.getElementById("pre").style.display ="none";
 			showSection("instructions");
-			//alert(chosen_condition);
+			alert(chosen_condition);
 			if (chosen_condition === 'cond_1') {
 				showSection("instructions_cond1");}
 			if (chosen_condition === 'cond_2'){
@@ -598,7 +527,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 			document.documentElement.scrollTop = 0;
 		    phaseName= stepsNames[step+1]
 			document.getElementById("instructions").style.display ="none";
-			//alert(chosen_condition);
+			alert(chosen_condition);
 			if (chosen_condition === 'cond_1') {
 				document.getElementById("instructions_cond1").style.display ="none";
 				}
@@ -623,7 +552,7 @@ window.onload = function() {document.getElementById('submitButton'); }
 			document.documentElement.scrollTop = 0;
 		    phaseName= stepsNames[step+1]
 		    document.getElementById("instructions2").style.display ="none";
-			//alert(chosen_condition);
+			alert(chosen_condition);
 			document.getElementById("banner").innerHTML = "Find solutions using an inspiration source"
 			if (chosen_condition === 'cond_4'){
 				document.getElementById("banner").innerHTML = "Find solutions yourself"
@@ -668,7 +597,7 @@ function submitTask(){
 
 	// show submit elements
 	document.getElementById("banner").innerHTML = "Short survey"
-	//alert(chosen_condition);
+	alert(chosen_condition);
 	if (chosen_condition == "cond_4"){
 		document.getElementById("submit_cond4").style.display ="block";
 	}
