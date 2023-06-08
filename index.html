@@ -174,10 +174,10 @@ async function sample_condition_problem(){
 		var problem_cond2_str = chosen_problem + "_cond2";
 		var problem_cond3_str = chosen_problem + "_cond3";
 		var problem_cond4_str = chosen_problem + "_cond4";
-		var cond1_count = parseInt(problem_condition_to_number[problem_cond1_str]);
-		var cond2_count = parseInt(problem_condition_to_number[problem_cond2_str]);
-		var cond3_count = parseInt(problem_condition_to_number[problem_cond3_str]);
-		var cond4_count = parseInt(problem_condition_to_number[problem_cond4_str]);
+		cond1_count = parseInt(problem_condition_to_number[problem_cond1_str]);
+		cond2_count = parseInt(problem_condition_to_number[problem_cond2_str]);
+		cond3_count = parseInt(problem_condition_to_number[problem_cond3_str]);
+		cond4_count = parseInt(problem_condition_to_number[problem_cond4_str]);
 		
 		
 		//alert(chosen_condition);
@@ -185,42 +185,7 @@ async function sample_condition_problem(){
 		writeToLogger("Chosen problem: " + chosen_problem + '\n');
 
 		writeToLogger("Chosen condition: " + chosen_condition + '\n');
-		if (chosen_condition == "cond_1"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count + 1,
-			cond2: cond2_count,
-			cond3: cond3_count,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_2"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count + 1,
-			cond3: cond3_count,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_3"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count,
-			cond3: cond3_count+1,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_4"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count,
-			cond3: cond3_count,
-			cond4: cond4_count + 1
-			
-			
-		  });}
+		
 		  
 		
 		return [chosen_condition, problems_mapping[chosen_problem]];
@@ -242,6 +207,10 @@ async function sample_condition_problem(){
 //alert(list[0]);
 //alert(list[1]);
 let chosen_problem;
+let cond1_count;
+let cond2_count;
+let cond3_count;
+let cond4_count;
 var phaseName;
 var chosen_version;
 let chosen_condition;
@@ -484,7 +453,42 @@ window.onload = function() {document.getElementById('submitButton'); }
 	
 	if (all_fine == 0){
 		//try to put the comment submittance here, or try to recreate it
-	
+		if (chosen_condition == "cond_1"){
+		firebase.database().ref(chosen_problem).set({
+			cond1: cond1_count + 1,
+			cond2: cond2_count,
+			cond3: cond3_count,
+			cond4: cond4_count
+			
+			
+		  });}
+		else if (chosen_condition == "cond_2"){
+		firebase.database().ref(chosen_problem).set({
+			cond1: cond1_count,
+			cond2: cond2_count + 1,
+			cond3: cond3_count,
+			cond4: cond4_count
+			
+			
+		  });}
+		else if (chosen_condition == "cond_3"){
+		firebase.database().ref(chosen_problem).set({
+			cond1: cond1_count,
+			cond2: cond2_count,
+			cond3: cond3_count+1,
+			cond4: cond4_count
+			
+			
+		  });}
+		else if (chosen_condition == "cond_4"){
+		firebase.database().ref(chosen_problem).set({
+			cond1: cond1_count,
+			cond2: cond2_count,
+			cond3: cond3_count,
+			cond4: cond4_count + 1
+			
+			
+		  });}
 		document.getElementById("endOfTaskForm").submit();	
 	}
 	else
