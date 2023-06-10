@@ -35,14 +35,18 @@
   // Usage example
 document.body.scrollTop = 0;
 document.documentElement.scrollTop = 0;
+var condition_threshold = 3;
 var condition_num_to_type = {'cond_1': 'purp_only.html', 'cond_2': 'purp_mech.html', 'cond_3': 'purp_mech_gpt.html'}
 var number_to_cond = {1: 'cond_1', 2: 'cond_2', 3: 'cond_3', 4: 'cond_4'}
+var cond_str_cond = {'cond_1':'cond1', 'cond_2':'cond2','cond_3':'cond3','cond_4':'cond4'}
 var new_to_old_cond_mapping = {'graph_1': 'cond_1', 'graph_2': 'cond_2', 'graph_3': 'cond_3', 'graph_4': 'cond_4'}
 
 var stepsNames= ['pre','instructions','random'];
 var problems_mapping = {'problem1': 'Dry wet floor','problem2': 'Folding laundry'}
 
 var possible_problems = ['problem1', 'problem2'] // TODO here we need to add the problem that we want in the first part of the experiment
+var is_problem1 = 1;
+var is_problem2 = 0;
 var possible_versions = ['v_1','v_2','v_3','v_4']
 
 var versions_mapping = {'v_1': ['graph_1'],
@@ -56,7 +60,9 @@ var versions_mapping = {'v_1': ['graph_1'],
     var ref = database.ref();
     ref.once("value", function(snapshot) {
       var data = snapshot.val();
-      var mappy = "problem1: " + data.problem1.cond1 + " " + 
+	  var mappy = "";
+	  
+      mappy = "problem1: " + data.problem1.cond1 + " " + 
 	  data.problem1.cond2 + " " + data.problem1.cond3 + " " + 
 	  data.problem1.cond4 + " ";
 	  mappy += "problem2: " + data.problem2.cond1 + " " + 
@@ -75,8 +81,74 @@ var versions_mapping = {'v_1': ['graph_1'],
     console.log(error);
   }
 }
-  var condition_threshold = 50;
+
   
+  
+    function get_all_conditions_and_problems() {
+	  return new Promise(function(resolve, reject) {
+		var problem_map = new Map();
+		var problem_condition_to_number = new Map();
+		var all_possible_problems = [];
+		var problem_arr = [];
+
+		fetchData()
+		  .then(function(result) {
+			var problemSections = result.split(" ");
+			var mapping = {};
+			var problemName = problemSections[0].replace(":", "");
+			mapping[problemName] = [
+			  problemSections[1],
+			  problemSections[2],
+			  problemSections[3],
+			  problemSections[4]
+			];
+			var problemName2 = problemSections[5].replace(":", "");
+			mapping[problemName2] = [
+			  problemSections[6],
+			  problemSections[7],
+			  problemSections[8],
+			  problemSections[9]
+			];
+			var was_problem1_found = 0;
+			var was_problem2_found = 0;
+			var problem1_arr = [];
+			var problem2_arr = [];
+
+		    for (let i = 0; i < 4; i++) {
+				if (was_problem1_found == 0) {
+				  was_problem1_found = 1;
+				  all_possible_problems.push("problem1");
+				}
+				problem1_arr.push(i + 1);
+
+			  var problem_cond_str = "problem1_cond"+ (i+1);
+			  problem_condition_to_number[problem_cond_str] = mapping["problem1"][i];
+			  
+				if (was_problem2_found == 0) {
+				  was_problem2_found = 1;
+				  all_possible_problems.push("problem2");
+				}
+				problem2_arr.push(i + 1);
+				
+			  var problem_cond_str = "problem2_cond"+ (i+1);
+				problem_condition_to_number[problem_cond_str] = mapping["problem2"][i];
+
+			  }
+			  
+			if (problem1_arr.length > 0) {
+			  problem_map["problem1"] = problem1_arr;
+			}
+			if (problem2_arr.length > 0) {
+			  problem_map["problem2"] = problem2_arr;
+			}
+
+			resolve([all_possible_problems, problem_map, problem_condition_to_number]);
+		  })
+		  .catch(function(error) {
+			reject(error);
+		  });
+	  });
+	}
   
   function get_possible_conditions_and_problems() {
 	  return new Promise(function(resolve, reject) {
@@ -109,17 +181,21 @@ var versions_mapping = {'v_1': ['graph_1'],
 			var problem2_arr = [];
 
 			for (let i = 0; i < 4; i++) {
-			  if (mapping["problem1"][i] < condition_threshold) {
-				if (was_problem1_found == 0) {
-				  was_problem1_found = 1;
-				  all_possible_problems.push("problem1");
-				}
-				problem1_arr.push(i + 1);
+			  if (is_problem1 == 1){
+				if (mapping["problem1"][i] < condition_threshold) {
+					if (was_problem1_found == 0) {
+					  was_problem1_found = 1;
+					  all_possible_problems.push("problem1");
+					}
+					problem1_arr.push(i + 1);
 				
 			  }
 			  var problem_cond_str = "problem1_cond"+ (i+1);
 				problem_condition_to_number[problem_cond_str] = mapping["problem1"][i];
-			  if (mapping["problem2"][i] < condition_threshold) {
+			  }
+			  
+			  if (is_problem2 ==1){
+				if (mapping["problem2"][i] < condition_threshold) {
 				if (was_problem2_found == 0) {
 				  was_problem2_found = 1;
 				  all_possible_problems.push("problem2");
@@ -130,6 +206,8 @@ var versions_mapping = {'v_1': ['graph_1'],
 			  var problem_cond_str = "problem2_cond"+ (i+1);
 				problem_condition_to_number[problem_cond_str] = mapping["problem2"][i];
 			}
+			  }
+			  
 			
 
 			if (problem1_arr.length > 0) {
@@ -138,15 +216,7 @@ var versions_mapping = {'v_1': ['graph_1'],
 			if (problem2_arr.length > 0) {
 			  problem_map["problem2"] = problem2_arr;
 			}
-			
-			//alert(problem_condition_to_number["problem1_cond1"]);
-			//alert(problem_condition_to_number["problem1_cond2"]);
-			//alert(problem_condition_to_number["problem1_cond3"]);
-			//alert(problem_condition_to_number["problem1_cond4"]);
-			//alert(problem_condition_to_number["problem2_cond1"]);
-			//alert(problem_condition_to_number["problem2_cond2"]);
-			//alert(problem_condition_to_number["problem2_cond3"]);
-			//alert(problem_condition_to_number["problem2_cond4"]);
+
 			resolve([all_possible_problems, problem_map, problem_condition_to_number]);
 		  })
 		  .catch(function(error) {
@@ -155,12 +225,71 @@ var versions_mapping = {'v_1': ['graph_1'],
 	  });
 	}
 
-async function sample_condition_problem(){
-		let values = await get_possible_conditions_and_problems();
+async function get_count_for_chosen_problem(){
+	try{
+		let values = await get_all_conditions_and_problems();
+		var problem_condition_to_number = values[2];
+		//alert("look here");
+		
+		var problem_cond1_str = chosen_problem_str + "_cond1";
+		var problem_cond2_str = chosen_problem_str+ "_cond2";
+		var problem_cond3_str = chosen_problem_str + "_cond3";
+		var problem_cond4_str = chosen_problem_str + "_cond4";
+		//alert(problem_cond1_str);
+		//alert(problem_cond2_str);
+		//alert(problem_cond1_str);
+		//alert(problem_condition_to_number[problem_cond1_str]);
+		cond1_count = parseInt(problem_condition_to_number[problem_cond1_str]);
+		cond2_count = parseInt(problem_condition_to_number[problem_cond2_str]);
+		cond3_count = parseInt(problem_condition_to_number[problem_cond3_str]);
+		cond4_count = parseInt(problem_condition_to_number[problem_cond4_str]);	
+	}
+	catch(error){
+	}
+	
 
+}
+function sample_condition_from_all(){
+	//alert("sampling from all");
+	var all_possible_problems = [];
+	if (is_problem1 == 1){
+		all_possible_problems.push("problem1");
+	}
+	if (is_problem2 == 1){
+		all_possible_problems.push("problem2");
+	}
+	//alert(all_possible_problems);
+	var problem_map = {"problem1":[1,2,3,4], "problem2":[1,2,3,4]};
+	var random_number_problem = Math.floor(Math.random() * all_possible_problems.length);
+	chosen_problem = all_possible_problems[random_number_problem];
+	var random_number_condition_version = Math.floor(Math.random() * problem_map[chosen_problem].length);
+
+	var chosen_cond_number = problem_map[chosen_problem][random_number_condition_version];
+	
+	chosen_condition = number_to_cond[chosen_cond_number];
+	//alert(chosen_problem);
+	//alert(chosen_condition);
+	writeToLogger("Chosen problem: " + chosen_problem + '\n');
+
+	writeToLogger("Chosen condition: " + chosen_condition + '\n');
+	chosen_problem_str = chosen_problem;
+	
+	return [chosen_condition, problems_mapping[chosen_problem]];
+
+
+}
+async function sample_condition_problem(){
+		try{
+		let values = await get_possible_conditions_and_problems();
 		var all_possible_problems = values[0];
+		//alert(all_possible_problems);
 		var problem_map = values[1];
 		var problem_condition_to_number = values[2];
+		if (all_possible_problems.length == 0){
+		//alert("no problem to choose from");
+			return sample_condition_from_all();
+		}
+		//alert("everything is fine");
 		var random_number_problem = Math.floor(Math.random() * all_possible_problems.length);
 		chosen_problem = all_possible_problems[random_number_problem];
 		var random_number_condition_version = Math.floor(Math.random() * problem_map[chosen_problem].length);
@@ -168,8 +297,8 @@ async function sample_condition_problem(){
 		var chosen_cond_number = problem_map[chosen_problem][random_number_condition_version];
 		
 		chosen_condition = number_to_cond[chosen_cond_number];
-		alert(chosen_problem);
-		alert(chosen_condition);
+		//alert(chosen_problem);
+		//alert(chosen_condition);
 		var problem_cond1_str = chosen_problem + "_cond1";
 		var problem_cond2_str = chosen_problem + "_cond2";
 		var problem_cond3_str = chosen_problem + "_cond3";
@@ -185,10 +314,19 @@ async function sample_condition_problem(){
 		writeToLogger("Chosen problem: " + chosen_problem + '\n');
 
 		writeToLogger("Chosen condition: " + chosen_condition + '\n');
+		chosen_problem_str = chosen_problem;
 		
 		  
 		
 		return [chosen_condition, problems_mapping[chosen_problem]];
+		
+		}
+		catch (error){
+			return sample_condition_from_all();
+		
+		}
+		
+		
 		
 		
 		
@@ -207,6 +345,7 @@ async function sample_condition_problem(){
 //alert(list[0]);
 //alert(list[1]);
 let chosen_problem;
+let chosen_problem_str;
 let cond1_count;
 let cond2_count;
 let cond3_count;
@@ -229,10 +368,10 @@ main();
 
 
 const numOfSecondsSelfPart = 80; // 120
-const numOfSecondsInspirationPart = 30; //480 todo - change this to see
+const numOfSecondsInspirationPart = 10; //480 todo - change this to see
 
 var totalSecondsSelfAnswer = 80; // 120
-var totalSecondsWithInspiration = 30; //480 todo - change this to see effect on times, table snapshot
+var totalSecondsWithInspiration = 10; //480 todo - change this to see effect on times, table snapshot
 // var curr_graph_url_problem;
 
 	function showInspirationBlankLinesAccordingToPhase(cond){
@@ -361,7 +500,43 @@ window.onload = function() {document.getElementById('submitButton'); }
 
 	}
 
-
+	async function update_databse(){
+	if (chosen_condition == "cond_1"){
+		firebase.database().ref(chosen_problem_str).set({
+			cond1: cond1_count + 1,
+			cond2: cond2_count,
+			cond3: cond3_count,
+			cond4: cond4_count
+			
+			
+		  });}
+		else if (chosen_condition == "cond_2"){
+		firebase.database().ref(chosen_problem_str).set({
+			cond1: cond1_count,
+			cond2: cond2_count + 1,
+			cond3: cond3_count,
+			cond4: cond4_count
+			
+			
+		  });}
+		else if (chosen_condition == "cond_3"){
+		firebase.database().ref(chosen_problem_str).set({
+			cond1: cond1_count,
+			cond2: cond2_count,
+			cond3: cond3_count+1,
+			cond4: cond4_count
+			
+			
+		  });}
+		else if (chosen_condition == "cond_4"){
+		firebase.database().ref(chosen_problem_str).set({
+			cond1: cond1_count,
+			cond2: cond2_count,
+			cond3: cond3_count,
+			cond4: cond4_count + 1
+			
+			
+		  });}}
 
 	function endOfSurveyubmit(){
 	//alert("called the function");
@@ -453,43 +628,12 @@ window.onload = function() {document.getElementById('submitButton'); }
 	
 	if (all_fine == 0){
 		//try to put the comment submittance here, or try to recreate it
-		if (chosen_condition == "cond_1"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count + 1,
-			cond2: cond2_count,
-			cond3: cond3_count,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_2"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count + 1,
-			cond3: cond3_count,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_3"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count,
-			cond3: cond3_count+1,
-			cond4: cond4_count
-			
-			
-		  });}
-		else if (chosen_condition == "cond_4"){
-		firebase.database().ref(chosen_problem).set({
-			cond1: cond1_count,
-			cond2: cond2_count,
-			cond3: cond3_count,
-			cond4: cond4_count + 1
-			
-			
-		  });}
-		document.getElementById("endOfTaskForm").submit();	
+		get_count_for_chosen_problem().then(function(){;
+			update_databse().then(function(){
+			document.getElementById("endOfTaskForm").submit();
+		}
+		);
+		});		
 	}
 	else
 	{
@@ -638,13 +782,11 @@ window.onload = function() {document.getElementById('submitButton'); }
 	}
 
 	function showInspirationSection(cond){
-			alert("shpow inspiration");
 			document.getElementById('scroll_inspiration_solutions').scrollTop = 0;
 			showSection("inspiration_based_solutions_blank_lines")
 			document.getElementById("task_chosen_problem").innerHTML = chosen_problem;
 			showInspirationBlankLinesAccordingToPhase(cond)
 			document.getElementById("button3" + chosen_condition).style.display ="none";
-			
 			mtimer = setInterval(myTimerInspirationAnswer, 1000)
 			document.getElementById('scroll_inspiration_solutions').scrollTop = 0;
 	}
